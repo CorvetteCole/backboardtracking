@@ -1,7 +1,7 @@
 /*code should provide numbers from 4 sensors simultaneously.
  * 
  */
-int sensor1,sensor2,sensor3,sensor4 = 0;
+int sensor1,sensor2,sensor3,sensor4,sensor1dist,sensor2dist,sensor3dist,sensor4dist = 0;
 
 void setup() {
   Serial.begin(9600);              // Use Serial Monitor window
@@ -21,4 +21,15 @@ void loop() {
   Serial.println("Sensor4");
   Serial.println(sensor4, DEC);
   delay(250);                      // Wait 1/4 second for the next read
+}
+
+void loop() {
+if 0<sensor1<255
+	sensor1dist = 1  // This likely isn't the fastest or most efficient way of doing it (I don't even know if it works).
+if 255<sensor1<510
+	sensor1dist = 2
+if 510<sensor1<765
+	sensor1dist = 3
+if 765<sensor1<1020           // Last value in final version will be significantly smaller to get rid of false readings
+	sensor1dist = 4
 }
