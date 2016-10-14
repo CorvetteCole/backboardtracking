@@ -10,7 +10,9 @@ void setup() {
 void loop() {
   sensor1 = analogRead(A0);  // Read the sensor
   sensor2 = analogRead(A1);
+  Serial.println("Sensor1");   
   Serial.println(sensor1, DEC);   // Display value in Serial Monitor window
+  Serial.println("Sensor2");
   Serial.println(sensor2, DEC);
   delay(250);                      // Wait 1/4 second for the next read
 }
