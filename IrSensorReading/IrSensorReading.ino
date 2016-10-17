@@ -11,15 +11,7 @@ void loop() {
   sensor1 = analogRead(A0);  // Read the sensors
   sensor2 = analogRead(A1);
   sensor3 = analogRead(A2);
-  sensor4 = analogRead(A3);
-  Serial.println("Sensor1");   
-  Serial.println(sensor1, DEC);   // Display values in Serial Monitor window
-  /*Serial.println("Sensor2");
-  Serial.println(sensor2, DEC);
-  Serial.println("Sensor3");
-  Serial.println(sensor3, DEC);
-  Serial.println("Sensor4");
-  Serial.println(sensor4, DEC);*/                      
+  sensor4 = analogRead(A3);                    
   
 	if (0 < sensor1 && 510 < sensor1)
 		sensor1dist = 1;                          // There will definitely be more blocks in the final version. The following code is a placeholder/outline
