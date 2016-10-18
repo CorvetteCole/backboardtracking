@@ -13,14 +13,16 @@ void loop() {
   sensor3 = analogRead(A2);
   sensor4 = analogRead(A3);                    
   
-	if (0 < sensor1 && 510 < sensor1)
+	if (340 < sensor1 && sensor1 < 394)
 		sensor1dist = 1;                          // There will definitely be more blocks in the final version. The following code is a placeholder/outline
-	if (255 < sensor1 && sensor1 < 510)
+	if (394 < sensor1 && sensor1 < 448)
 		sensor1dist = 2;
-	if (510 < sensor1 && sensor1 < 765)
+	if (448 < sensor1 && sensor1 < 502)
 		sensor1dist = 3;
-	if (765 < sensor1 && sensor1 < 1020)        // Values in final version will be very different to reduce false readings
+	if (502 < sensor1 && sensor1 < 556)        // Values in final version will be very different to reduce false readings
 		sensor1dist = 4;
+  if (556 < sensor1 && sensor1 < 610)
+    sesnor1dist = 5;
 	/*if (0 < sensor2 && sensor2 < 255)           //sensor 2 referencing begins
 		sensor2dist = 1;
 	if (255 < sensor2 && sensor2 < 510)
