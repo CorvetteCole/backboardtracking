@@ -17,23 +17,23 @@ void loop() {
   float sensor3voltage = sensor3value * (5.0 / 1023.0);
   float sensor4voltage = sensor4value * (5.0 / 1023.0);                    
   
-	if (340 < sensor1voltage && sensor1voltage < 361.96)
+  if (340 < sensor1voltage && sensor1voltage < 361.96)
 		sensor1dist = 1;                          // There will definitely be more blocks in the final version. The following code is a placeholder/outline
-	if (361.96 < sensor1voltage && sensor1voltage < 383.92)
-		sensor1dist = 2;
-	if (383.92 < sensor1voltage && sensor1voltage < 405.88)
+  if (361.96 < sensor1voltage && sensor1voltage < 383.92)
+        	sensor1dist = 2;
+  if (383.92 < sensor1voltage && sensor1voltage < 405.88)
 		sensor1dist = 3;
-	if (405.88 < sensor1voltage && sensor1voltage < 427.84)        // Values in final version will be very different to reduce false readings
+  if (405.88 < sensor1voltage && sensor1voltage < 427.84)        // Values in final version will be very different to reduce false readings
 		sensor1dist = 4;
   if (427.84 < sensor1voltage && sensor1voltage < 449.8)
     sensor1dist = 5;
-	/*if (340 < sensor2voltage && sensor2voltage < 361.96)           //sensor 2 referencing begins
+/*if (340 < sensor2voltage && sensor2voltage < 361.96)           //sensor 2 referencing begins
 		sensor2dist = 1;
-	if (361.96 < sensor2voltage && sensor2voltage < 510)
+  if (361.96 < sensor2voltage && sensor2voltage < 510)
 		sensor2dist = 2;
-	if (383.92 < sensor2voltage && sensor2voltage < 765)
+  if (383.92 < sensor2voltage && sensor2voltage < 765)
 		sensor2dist = 3;
-	if (405.88 < sensor2voltage && sensor2voltage < 1020)
+  if (405.88 < sensor2voltage && sensor2voltage < 1020)
 		sensor2dist = 4;
   if (427.84 < sensor2voltage && sensor2voltage < 449.8)
     sensor2dist = 5;
