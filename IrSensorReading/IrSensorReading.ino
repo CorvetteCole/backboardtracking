@@ -1,55 +1,66 @@
 /*code should provide numbers from 4 sensors simultaneously.
  * 
  */
-int sensor1,sensor2,sensor3,sensor4,sensor1dist,sensor2dist,sensor3dist,sensor4dist = 0;
+int sensor1voltage,sensor2voltage,sensor3voltage,sensor4voltage,sensor1dist,sensor2dist,sensor3dist,sensor4dist, sensor1value, sensor2value, sensor3value, sensor4value = 0;
 
 void setup() {
   Serial.begin(9600);              // Use Serial Monitor window
 }
 
 void loop() {
-  sensor1 = analogRead(A0);  // Read the sensors
-  sensor2 = analogRead(A1);
-  sensor3 = analogRead(A2);
-  sensor4 = analogRead(A3);                    
+  sensor1value = analogRead(A0);  // Read the sensors
+  sensor2value = analogRead(A1);
+  sensor3value = analogRead(A2);
+  sensor4value = analogRead(A3);
+  float sensor1voltage = sensor1value * (5.0 / 1023.0);
+  float sensor2voltage = sensor2value * (5.0 / 1023.0);
+  float sensor3voltage = sensor3value * (5.0 / 1023.0);
+  float sensor4voltage = sensor4value * (5.0 / 1023.0);                    
   
-	if (340 < sensor1 && sensor1 < 361.96)
+	if (340 < sensor1voltage && sensor1voltage < 361.96)
 		sensor1dist = 1;                          // There will definitely be more blocks in the final version. The following code is a placeholder/outline
-	if (361.96 < sensor1 && sensor1 < 383.92)
+	if (361.96 < sensor1voltage && sensor1voltage < 383.92)
 		sensor1dist = 2;
-	if (383.92 < sensor1 && sensor1 < 405.88)
+	if (383.92 < sensor1voltage && sensor1voltage < 405.88)
 		sensor1dist = 3;
-	if (405.88 < sensor1 && sensor1 < 427.84)        // Values in final version will be very different to reduce false readings
+	if (405.88 < sensor1voltage && sensor1voltage < 427.84)        // Values in final version will be very different to reduce false readings
 		sensor1dist = 4;
-  if (427.84 < sensor1 && sensor1 < 449.8)
-    sesnor1dist = 5;
-	/*if (0 < sensor2 && sensor2 < 255)           //sensor 2 referencing begins
+  if (427.84 < sensor1voltage && sensor1voltage < 449.8)
+    sensor1dist = 5;
+	/*if (340 < sensor2voltage && sensor2voltage < 361.96)           //sensor 2 referencing begins
 		sensor2dist = 1;
-	if (255 < sensor2 && sensor2 < 510)
+	if (361.96 < sensor2voltage && sensor2voltage < 510)
 		sensor2dist = 2;
-	if (510 < sensor2 && sensor2 < 765)
+	if (383.92 < sensor2voltage && sensor2voltage < 765)
 		sensor2dist = 3;
-	if (765 < sensor2 && sensor2 < 1020)
+	if (405.88 < sensor2voltage && sensor2voltage < 1020)
 		sensor2dist = 4;
-  if (0 < sensor3 && sensor3 < 255)           //sensor 3 referencing begins
+  if (427.84 < sensor2voltage && sensor2voltage < 449.8)
+    sensor2dist = 5;
+  if (340 < sensor3voltage && sensor3voltage < 255)           //sensor 3 referencing begins
     sensor3dist = 1;
-  if (255 < sensor3 && sensor3 < 510)
+  if (361.96 < sensor3voltage && sensor3voltage < 510)
     sensor3dist = 2;
-  if (510 < sensor3 && sensor3 < 765)
+  if (383.92 < sensor3voltage && sensor3voltage < 765)
     sensor3dist = 3;
-  if (765 < sensor3 && sensor3 < 1020)
+  if (405.88 < sensor3voltage && sensor3voltage < 1020)
     sensor3dist = 4;
-  if (0 < sensor4 && sensor4 < 255)           //sensor 4 referencing begins
+  if (427.84 < sensor3voltage && sensor3voltage < 449.8)
+    sensor3dist = 5;
+  if (340 < sensor4voltage && sensor4voltage < 255)           //sensor 4 referencing begins
     sensor4dist = 1;
-  if (255 < sensor4 && sensor4 < 510)
+  if (361.96 < sensor4voltage && sensor4voltage < 510)
     sensor4dist = 2;
-  if (510 < sensor4 && sensor4 < 765)
+  if (383.92 < sensor4voltage && sensor4voltage < 765)
     sensor4dist = 3;
-  if (765 < sensor4 && sensor4 < 1020)
-    sensor4dist = 4;*/
+  if (405.88 < sensor4voltage && sensor4voltage < 1020)
+    sensor4dist = 4;
+  if (427.84 < sensor4voltage && sensor4voltage < 449.8)
+    sensor4dist = 5;*/
 
 
     Serial.println("Sensor 1 block");
     Serial.println(sensor1dist, DEC);
+  delay(500);
 }
 
