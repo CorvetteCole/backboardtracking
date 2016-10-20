@@ -18,7 +18,7 @@ void loop() {
   float sensor4voltage = sensor4value * (5.0 / 1023.0);                    
   
   if ( 2.1 <= sensor1voltage && sensor1voltage <= 2.5)
-		sensor1dist = 1;                          // There will definitely be more blocks in the final version. The following code is a placeholder/outline
+		sensor1dist = 1;                         
   if (1.95 <= sensor1voltage && sensor1voltage < 2.1)
         	sensor1dist = 2;
   if (1.86 <= sensor1voltage && sensor1voltage < 1.95)
