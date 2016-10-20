@@ -6,24 +6,13 @@ int sensor1voltage,sensor2voltage,sensor3voltage,sensor4voltage,sensor1dist,sens
 void setup() {
   Serial.begin(9600);              // Use Serial Monitor window
 }
-
-int irRead1() {
-  int averaging = 0;             //  Holds value to average readings
-
-  // Get a sampling of 5 readings from sensor
-  for (int i=0; i<5; i++) {
-    averaging = averaging + analogRead(A0);
-    delay(55);      // Wait 55 ms between each read
-                    // According to datasheet time between each read
-                    //  is -38ms +/- 10ms. Waiting 55 ms assures each
-                    //  read is from a different sample
-  }
-  sensor1value = averaging / 5;      // Average out readings  
-  return(sensor1value);              // Return value   
-  }
+ 
 void loop() {
-
-  float sensor1voltage = irRead1() * (5.0 / 1023.0);
+  sensor1value = analogRead(A0);
+  sensor2value = analogRead(A1);
+  sensor3value = analogRead(A2);
+  sensor4value = analogRead(A3);
+  float sensor1voltage = sensor1value * (5.0 / 1023.0);
   float sensor2voltage = sensor2value * (5.0 / 1023.0);
   float sensor3voltage = sensor3value * (5.0 / 1023.0);
   float sensor4voltage = sensor4value * (5.0 / 1023.0);
@@ -32,7 +21,7 @@ void loop() {
   if ( 2.12 < sensor1voltage && sensor1voltage < 2.5)
 		sensor1dist = 1;                          // There will definitely be more blocks in the final version. The following code is a placeholder/outline
   if (1.93 < sensor1voltage && sensor1voltage < 2.12)
-        	sensor1dist = 2;
+    sensor1dist = 2;
   if (1.82 < sensor1voltage && sensor1voltage < 1.93)
 		sensor1dist = 3;
   if (1.73 < sensor1voltage && sensor1voltage < 1.82)        // Values in final version will be very different to reduce false readings
