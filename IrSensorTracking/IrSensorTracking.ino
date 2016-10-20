@@ -17,46 +17,52 @@ void loop() {
   float sensor3voltage = sensor3value * (5.0 / 1023.0);
   float sensor4voltage = sensor4value * (5.0 / 1023.0);                    
   
+<<<<<<< HEAD
+  if ( 2.12 < sensor1voltage && sensor1voltage < 2.5)
+		sensor1dist = 1;                          // There will definitely be more blocks in the final version. The following code is a placeholder/outline
+  if (1.93 < sensor1voltage && sensor1voltage < 2.12)
+=======
   if ( 2.1 <= sensor1voltage && sensor1voltage <= 2.5)
 		sensor1dist = 1;                         
   if (1.95 <= sensor1voltage && sensor1voltage < 2.1)
+>>>>>>> c272f37efc150f57eb536b991d02db0109d2fdaf
         	sensor1dist = 2;
-  if (1.86 <= sensor1voltage && sensor1voltage < 1.95)
+  if (1.82 < sensor1voltage && sensor1voltage < 1.93)
 		sensor1dist = 3;
-  if (1.83 < sensor1voltage && sensor1voltage <= 1.86)        // Values in final version will be very different to reduce false readings
+  if (1.73 < sensor1voltage && sensor1voltage < 1.82)        // Values in final version will be very different to reduce false readings
 		sensor1dist = 4;
-  if (1.8 < sensor1voltage && sensor1voltage < 1.83)
+  if (1.66 < sensor1voltage && sensor1voltage < 1.73)
     sensor1dist = 5;
 /*if (340 < sensor2voltage && sensor2voltage < 361.96)           //sensor 2 referencing begins
-		sensor2dist = 1;
+		sensor2dist = 6;
   if (361.96 < sensor2voltage && sensor2voltage < 510)
-		sensor2dist = 2;
+		sensor2dist = 7;
   if (383.92 < sensor2voltage && sensor2voltage < 765)
-		sensor2dist = 3;
+		sensor2dist = 8;
   if (405.88 < sensor2voltage && sensor2voltage < 1020)
-		sensor2dist = 4;
+		sensor2dist = 9;
   if (427.84 < sensor2voltage && sensor2voltage < 449.8)
-    sensor2dist = 5;
+    sensor2dist = 10;
   if (340 < sensor3voltage && sensor3voltage < 255)           //sensor 3 referencing begins
-    sensor3dist = 1;
+    sensor3dist = 11;
   if (361.96 < sensor3voltage && sensor3voltage < 510)
-    sensor3dist = 2;
+    sensor3dist = 12;
   if (383.92 < sensor3voltage && sensor3voltage < 765)
-    sensor3dist = 3;
+    sensor3dist = 13;
   if (405.88 < sensor3voltage && sensor3voltage < 1020)
-    sensor3dist = 4;
+    sensor3dist = 14;
   if (427.84 < sensor3voltage && sensor3voltage < 449.8)
-    sensor3dist = 5;
+    sensor3dist = 15;
   if (340 < sensor4voltage && sensor4voltage < 255)           //sensor 4 referencing begins
-    sensor4dist = 1;
+    sensor4dist = 16;
   if (361.96 < sensor4voltage && sensor4voltage < 510)
-    sensor4dist = 2;
+    sensor4dist = 17;
   if (383.92 < sensor4voltage && sensor4voltage < 765)
-    sensor4dist = 3;
+    sensor4dist = 18;
   if (405.88 < sensor4voltage && sensor4voltage < 1020)
-    sensor4dist = 4;
+    sensor4dist = 19;
   if (427.84 < sensor4voltage && sensor4voltage < 449.8)
-    sensor4dist = 5;*/
+    sensor4dist = 20;*/
 
 
     Serial.println("Sensor 1 block");
