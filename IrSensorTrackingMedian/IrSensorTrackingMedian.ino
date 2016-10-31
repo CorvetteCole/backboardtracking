@@ -1,3 +1,7 @@
+#include <vector>
+#include <algorithm>
+#include <iostream>
+using namespace std;
 /*code should provide numbers from 4 sensors simultaneously.
  * 
  */
@@ -20,9 +24,31 @@ int irRead1() {
     delay(55);
     Median[3] = irRead1();
     delay(55);
-    Median[4] = irRead1();      
-                   
-  }  
+    Median[4] = irRead1();    
+     }  
+    vector<int> mArray(Median,Median+5); // Remember to set this number to match the number of items in your int array
+    vector<int>::iterator it;
+
+    sort(mArray.begin(),mArray.end());
+
+// Find the median.
+    float median,middle,middleh;
+    float middlel;
+    vector<int>::iterator z;
+    switch(mArray.size()%2) {
+        case(0): // even
+            z = mArray.begin();
+            middlel = mArray.size()/2;
+            z += middlel;
+            middleh = (*z+*(--z))/2;
+            sensor1value = middleh;
+        break;
+        case(1): // odd
+            z = mArray.begin();
+            middle = mArray.size()/2;
+            sensor1value = middle;
+        break;
+    }
   return(sensor1value);              // Return value   
   }
 void loop() {
