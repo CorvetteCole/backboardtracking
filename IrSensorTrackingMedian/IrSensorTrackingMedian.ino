@@ -32,8 +32,8 @@ int irRead1() {
     sort(mArray.begin(),mArray.end());
 
 // Find the median.
-    float median,middle,middleh;
-    float middlel;
+    int median,middle,middleh;
+    int middlel;
     vector<int>::iterator z;
     switch(mArray.size()%2) {
         case(0): // even
