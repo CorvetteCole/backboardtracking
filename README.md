@@ -8,4 +8,5 @@ Tool provided in folder to measure voltages from the analog pin a sensor is conn
 
 
 #Requirements
-This now requires STL for arduino. http://andybrown.me.uk/2011/01/15/the-standard-template-library-stl-for-avr-with-c-streams/
+IrSensorTrackingMedian Requires STL for Arduino. To use this in the Arduino program click Sketch>Include Library>Manage Libraries.   
+Then search for STL and install "ArduinoSTL". Next go to Sketch>Inlude Library>ArduinoSTL
