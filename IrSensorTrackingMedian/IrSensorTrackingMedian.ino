@@ -1,6 +1,5 @@
 #include <vector>
 #include <algorithm>
-#include <iostream>
 using namespace std;
 /*code should provide numbers from 4 sensors simultaneously.
  * 
@@ -24,7 +23,8 @@ int irRead1() {
     delay(55);
     Median[3] = irRead1();
     delay(55);
-    Median[4] = irRead1();    
+    Median[4] = irRead1();
+    delay(55);    
      }  
     vector<int> mArray(Median,Median+5); // Remember to set this number to match the number of items in your int array
     vector<int>::iterator it;
@@ -105,6 +105,6 @@ void loop() {
 
     Serial.println("Sensor 1 block");
     Serial.println(sensor1dist, DEC);
-  delay(250);
+  delay(275);
 }
 
