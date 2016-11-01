@@ -5,16 +5,14 @@
 /*code should provide numbers from 4 sensors simultaneously.
  * 
  */
-int sensor1voltage,sensor2voltage,sensor3voltage,sensor4voltage,sensor1dist,sensor2dist,sensor3dist,sensor4dist, sensor1value, sensor2value, sensor3value, sensor4value = 0;
+int sensor1voltage,sensor2voltage,sensor3voltage,sensor4voltage,sensor1dist,sensor2dist,sensor3dist,sensor4dist, sensor1value, sensor2value, sensor3value, sensor4value, x = 0;
 
 void setup() {
   Serial.begin(9600);              // Use Serial Monitor window
 }
 
-/*void median() {
-  int Median [4];             //  Holds value to find median of readings
-   // Get a sampling of 5 readings from sensor
-  for (int i=0; i<5; i++) {
+void median() {
+  int Median [4];             
     Median [0] = analogRead(A0);
     delay(55);
     Median [1] = analogRead(A0);
@@ -25,27 +23,28 @@ void setup() {
     delay(55);
     Median [4] = analogRead(A0);
     delay(55);    
-     }  
+}
+int irRead1() {
     vector<int> mArray(Median,Median+5); // Remember to set this number to match the number of items in your int array
     vector<int>::iterator it;
 
     sort(mArray.begin(),mArray.end());
-
+  
 // Find the median.
     int median,middle,middleh;
     int middlel;
     vector<int>::iterator z;
             z = mArray.begin();
             middle = mArray.size()/2;
-            //sensor1value = middle;
+            return(middle)
             
         
     
  
-  }*/
+  }
 void loop() {
 
-  int sensor1voltage = sensor1value * (5.0 / 1023.0);
+  int sensor1voltage = irRead() * (5.0 / 1023.0);
   int sensor2voltage = sensor2value * (5.0 / 1023.0);
   int sensor3voltage = sensor3value * (5.0 / 1023.0);
   int sensor4voltage = sensor4value * (5.0 / 1023.0);
@@ -96,8 +95,8 @@ void loop() {
 
 
     Serial.println("Sensor 1 block");
-    Serial.println(sensor1voltage, DEC);
-  delay(275);
+    Serial.println(sensor1value, DEC);
+  delay(55);
 }
 
 
