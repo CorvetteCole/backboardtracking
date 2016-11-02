@@ -1,59 +1,45 @@
-#include <ArduinoSTL.h>
-#include <vector>
-#include <algorithm>
-
 /*code should provide numbers from 4 sensors simultaneously.
  * 
  */
-int sensor1voltage,sensor2voltage,sensor3voltage,sensor4voltage,sensor1dist,sensor2dist,sensor3dist,sensor4dist, sensor1value, sensor2value, sensor3value, sensor4value, x = 0;
-
+int sensor1voltage,sensor2voltage,sensor3voltage,sensor4voltage,sensor1dist,sensor2dist,sensor3dist,sensor4dist, sensor1value, sensor2value, sensor3value, sensor4value = 0;
+int med [4] = { };
 void setup() {
   Serial.begin(9600);              // Use Serial Monitor window
 }
-
-void median() {
-  int Median [4];             
-    Median [0] = analogRead(A0);
-    delay(55);
-    Median [1] = analogRead(A0);
-    delay(55);
-    Median [2] = analogRead(A0);
-    delay(55);
-    Median [3] = analogRead(A0);
-    delay(55);
-    Median [4] = analogRead(A0);
-    delay(55);    
-}
-int irRead1() {
-    vector<int> mArray(Median,Median+5); // Remember to set this number to match the number of items in your int array
-    vector<int>::iterator it;
-
-    sort(mArray.begin(),mArray.end());
-  
-// Find the median.
-    int median,middle,middleh;
-    int middlel;
-    vector<int>::iterator z;
-            z = mArray.begin();
-            middle = mArray.size()/2;
-            return(middle)
-            
-        
-    
  
-  }
 void loop() {
-
-  int sensor1voltage = irRead() * (5.0 / 1023.0);
-  int sensor2voltage = sensor2value * (5.0 / 1023.0);
-  int sensor3voltage = sensor3value * (5.0 / 1023.0);
-  int sensor4voltage = sensor4value * (5.0 / 1023.0);
+  int i =1;
+  while (i > 0){
+    i--;
+    sensor1value = analogRead(A0);
+    sensor2value = analogRead(A1);
+    sensor3value = analogRead(A2);
+    sensor4value = analogRead(A3);
+  }
+   while (i > 0){
+    i--;
+    med [0] = sensor1value;
+    delay(55);
+    med [1] = sensor1value;
+    delay(55);
+    med [2] = sensor1value;
+    delay(55);
+    med [3] = sensor1value;
+    delay(55);
+    med [4] =sensor1value;
+    delay(55);   
+   }
+  
+  float sensor1voltage = sensor1value * (5.0 / 1023.0);
+  float sensor2voltage = sensor2value * (5.0 / 1023.0);
+  float sensor3voltage = sensor3value * (5.0 / 1023.0);
+  float sensor4voltage = sensor4value * (5.0 / 1023.0);
                  
   
   if ( 2.12 < sensor1voltage && sensor1voltage < 2.5)
 		sensor1dist = 1;                          // There will definitely be more blocks in the final version. The following code is a placeholder/outline
   if (1.93 < sensor1voltage && sensor1voltage < 2.12)
-        	sensor1dist = 2;
+    sensor1dist = 2;
   if (1.82 < sensor1voltage && sensor1voltage < 1.93)
 		sensor1dist = 3;
   if (1.73 < sensor1voltage && sensor1voltage < 1.82)        // Values in final version will be very different to reduce false readings
@@ -95,8 +81,17 @@ void loop() {
 
 
     Serial.println("Sensor 1 block");
-    Serial.println(sensor1value, DEC);
-  delay(55);
+    Serial.println(sensor1dist, DEC);
+  delay(275);
 }
-
-
+void sort(int a[], int size) {
+    for(int i=0; i<(size-1); i++) {
+        for(int o=0; o<(size-(i+1)); o++) {
+                if(a[o] > a[o+1]) {
+                    int t = a[o];
+                    a[o] = a[o+1];
+                    a[o+1] = t;
+                }
+        }
+    }
+}
