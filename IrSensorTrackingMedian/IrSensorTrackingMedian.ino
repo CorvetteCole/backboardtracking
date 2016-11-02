@@ -22,36 +22,45 @@ void setup() {
 }
  
 void loop() {
-  int i = 5;
-  while (i > 0){
-    i--;
-    sensor1value = analogRead(A0);
-    sensor2value = analogRead(A1);
-    sensor3value = analogRead(A2);
-    sensor4value = analogRead(A3);
+    med1 [0] = analogRead(A0);
+   /* med2 [0] = analogRead(A1);    //as you can see by this example, the code is easily scaled.
+    med3 [0] = analogRead(A2);
+    med4 [0] = analogRead(A3);*/
     delay(55);
-  }
-  
-    med1 [0] = sensor1value;
-    med2 [0] = sensor2value;    //as you can see by this example, the code is easily scaled.
+    med1 [1] = analogRead(A0);
+   /* med2 [1] = analogRead(A1);
+    med3 [1] = analogRead(A2);
+    med4 [1] = analogRead(A3);*/
     delay(55);
-    med1 [1] = sensor1value;
+    med1 [2] = analogRead(A0);
+   /* med2 [2] = analogRead(A1);
+    med3 [2] = analogRead(A2);
+    med4 [2] = analogRead(A3);*/
     delay(55);
-    med1 [2] = sensor1value;
+    med1 [3] = analogRead(A0);
+   /* med2 [3] = analogRead(A1);
+    med3 [3] = analogRead(A2);
+    med4 [3] = analogRead(A3);*/
     delay(55);
-    med1 [3] = sensor1value;
-    delay(55);
-    med1 [4] = sensor1value;
+    med1 [4] = analogRead(A0);
+    /*med2 [4] = analogRead(A1);
+    med3 [4] = analogRead(A2);
+    med4 [4] = analogRead(A3);*/
     delay(55);   
 
     sort(med1,5);
+    /*sort(med2,5);
+    sort(med3,5);
+    sort(med4,5);*/
     sensor1value = med1 [2];
-
+    /*sensor2value = med2 [2];
+    sensor3value = med3 [2];
+    sensor4value = med4 [2];*/
   
   float sensor1voltage = sensor1value * (5.0 / 1023.0);
-  float sensor2voltage = sensor2value * (5.0 / 1023.0);
+  /*float sensor2voltage = sensor2value * (5.0 / 1023.0);
   float sensor3voltage = sensor3value * (5.0 / 1023.0);
-  float sensor4voltage = sensor4value * (5.0 / 1023.0);
+  float sensor4voltage = sensor4value * (5.0 / 1023.0);*/
                  
   
   if ( 2.12 < sensor1voltage && sensor1voltage < 2.5)
