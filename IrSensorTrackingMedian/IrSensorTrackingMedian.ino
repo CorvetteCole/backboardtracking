@@ -3,6 +3,9 @@
  */
 int sensor1voltage,sensor2voltage,sensor3voltage,sensor4voltage,sensor1dist,sensor2dist,sensor3dist,sensor4dist, sensor1value, sensor2value, sensor3value, sensor4value = 0;
 int med1 [5] = { };
+int med2 [5] = { };
+int med3 [5] = { };
+int med4 [5] = { };
 void sort(int a[], int size) {
     for(int i=0; i<(size-1); i++) {
         for(int o=0; o<(size-(i+1)); o++) {
@@ -30,6 +33,7 @@ void loop() {
   }
   
     med1 [0] = sensor1value;
+    med2 [0] = sensor2value;    //as you can see by this example, the code is easily scaled.
     delay(55);
     med1 [1] = sensor1value;
     delay(55);
