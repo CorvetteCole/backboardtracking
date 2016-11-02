@@ -2,33 +2,47 @@
  * 
  */
 int sensor1voltage,sensor2voltage,sensor3voltage,sensor4voltage,sensor1dist,sensor2dist,sensor3dist,sensor4dist, sensor1value, sensor2value, sensor3value, sensor4value = 0;
-int med [4] = { };
+int med1 [5] = { };
+void sort(int a[], int size) {
+    for(int i=0; i<(size-1); i++) {
+        for(int o=0; o<(size-(i+1)); o++) {
+                if(a[o] > a[o+1]) {
+                    int t = a[o];
+                    a[o] = a[o+1];
+                    a[o+1] = t;
+                }
+        }
+    }
+}
 void setup() {
   Serial.begin(9600);              // Use Serial Monitor window
 }
  
 void loop() {
-  int i =1;
+  int i = 5;
   while (i > 0){
     i--;
     sensor1value = analogRead(A0);
     sensor2value = analogRead(A1);
     sensor3value = analogRead(A2);
     sensor4value = analogRead(A3);
+    delay(55);
   }
-   while (i > 0){
-    i--;
-    med [0] = sensor1value;
+  
+    med1 [0] = sensor1value;
     delay(55);
-    med [1] = sensor1value;
+    med1 [1] = sensor1value;
     delay(55);
-    med [2] = sensor1value;
+    med1 [2] = sensor1value;
     delay(55);
-    med [3] = sensor1value;
+    med1 [3] = sensor1value;
     delay(55);
-    med [4] =sensor1value;
+    med1 [4] = sensor1value;
     delay(55);   
-   }
+
+    sort(med1,5);
+    sensor1value = med1 [2];
+
   
   float sensor1voltage = sensor1value * (5.0 / 1023.0);
   float sensor2voltage = sensor2value * (5.0 / 1023.0);
@@ -78,20 +92,10 @@ void loop() {
     sensor4dist = 19;
   if (427.84 < sensor4voltage && sensor4voltage < 449.8)
     sensor4dist = 20;*/
-
+   
 
     Serial.println("Sensor 1 block");
     Serial.println(sensor1dist, DEC);
   delay(275);
 }
-void sort(int a[], int size) {
-    for(int i=0; i<(size-1); i++) {
-        for(int o=0; o<(size-(i+1)); o++) {
-                if(a[o] > a[o+1]) {
-                    int t = a[o];
-                    a[o] = a[o+1];
-                    a[o+1] = t;
-                }
-        }
-    }
-}
+
