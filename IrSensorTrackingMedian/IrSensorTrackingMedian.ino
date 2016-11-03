@@ -1,6 +1,6 @@
-/*code should provide numbers from 4 sensors simultaneously.
- * 
- */
+//code should be able to tell where a ball hits on the backboard. The backboard is seperated in to 20 blocks and the code can tell which block it hits in. This code is easily scalable.
+
+//IMPORTANT: Connect the top sensor to A0, top middle to A1, lower middle to A2, Lower to A3
 int sensor1voltage,sensor2voltage,sensor3voltage,sensor4voltage,sensor1dist,sensor2dist,sensor3dist,sensor4dist, sensor1value, sensor2value, sensor3value, sensor4value = 0;
 int med1 [5] = { };
 int med2 [5] = { };
