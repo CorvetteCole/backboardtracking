@@ -2,10 +2,10 @@
 
 //IMPORTANT: Connect the top sensor to A0, top middle to A1, lower middle to A2, Lower to A3
 int sensor1voltage,sensor2voltage,sensor3voltage,sensor4voltage,sensor1dist,sensor2dist,sensor3dist,sensor4dist, sensor1value, sensor2value, sensor3value, sensor4value = 0;
-int med1 [5] = { };
-int med2 [5] = { };
-int med3 [5] = { };
-int med4 [5] = { };
+int med1 [3] = { };
+int med2 [3] = { };
+int med3 [3] = { };
+int med4 [3] = { };
 void sort(int a[], int size) {
     for(int i=0; i<(size-1); i++) {
         for(int o=0; o<(size-(i+1)); o++) {
@@ -26,36 +26,27 @@ void loop() {
    /* med2 [0] = analogRead(A1);    //as you can see by this example, the code is easily scaled.
     med3 [0] = analogRead(A2);
     med4 [0] = analogRead(A3);*/
-    delay(55);
+    delay(38);
     med1 [1] = analogRead(A0);
    /* med2 [1] = analogRead(A1);
     med3 [1] = analogRead(A2);
     med4 [1] = analogRead(A3);*/
-    delay(55);
+    delay(38);
     med1 [2] = analogRead(A0);
    /* med2 [2] = analogRead(A1);
     med3 [2] = analogRead(A2);
     med4 [2] = analogRead(A3);*/
-    delay(55);
-    med1 [3] = analogRead(A0);
-   /* med2 [3] = analogRead(A1);
-    med3 [3] = analogRead(A2);
-    med4 [3] = analogRead(A3);*/
-    delay(55);
-    med1 [4] = analogRead(A0);
-    /*med2 [4] = analogRead(A1);
-    med3 [4] = analogRead(A2);
-    med4 [4] = analogRead(A3);*/
-    delay(55);   
+    delay(38);
+   
 
-    sort(med1,5);
-    /*sort(med2,5);
-    sort(med3,5);
-    sort(med4,5);*/
-    sensor1value = med1 [2];
-    /*sensor2value = med2 [2];
-    sensor3value = med3 [2];
-    sensor4value = med4 [2];*/
+    sort(med1,3);
+    /*sort(med2,3);
+    sort(med3,3);
+    sort(med4,3);*/
+    sensor1value = med1 [1];
+    /*sensor2value = med2 [1];
+    sensor3value = med3 [1];
+    sensor4value = med4 [1];*/
   
   float sensor1voltage = sensor1value * (5.0 / 1023.0);
   /*float sensor2voltage = sensor2value * (5.0 / 1023.0);
@@ -109,6 +100,5 @@ void loop() {
 
     Serial.println("Sensor 1 block");
     Serial.println(sensor1dist, DEC);
-  delay(275);
 }
 
