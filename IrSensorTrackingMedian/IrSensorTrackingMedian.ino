@@ -1,7 +1,7 @@
 //code should be able to tell where a ball hits on the backboard. The backboard is seperated in to 20 blocks and the code can tell which block it hits in. This code is easily scalable.
 
 //IMPORTANT: Connect the top sensor to A0, top middle to A1, lower middle to A2, Lower to A3
-int sensor1voltage,sensor2voltage,sensor3voltage,sensor4voltage,sensor1dist,sensor2dist,sensor3dist,sensor4dist, sensor1value, sensor2value, sensor3value, sensor4value = 0;
+int sensor1voltage,sensor2voltage,sensor3voltage,sensor4voltage,sensor1dist,sensor2dist,sensor3dist,sensor4dist, sensor1value, sensor2value, sensor3value, sensor4value, initvolt1, initvolt2, initvolt3, initvolt4 = 0;
 int med1 [3] = { };
 int med2 [3] = { };
 int med3 [3] = { };
@@ -22,6 +22,12 @@ void setup() {
 }
  
 void loop() {
+  initvolt1 = analogRead(A0) * (5.0 / 1023.0);
+  initvolt2 = analogRead(A0) * (5.0 / 1023.0); 
+  initvolt3 = analogRead(A0) * (5.0 / 1023.0);
+  initvolt4 = analogRead(A0) * (5.0 / 1023.0);
+    if (1.66 < initvolt1 && initvolt1 < 2.5) {
+    Serial.println("broken");
     med1 [0] = analogRead(A0);
    /* med2 [0] = analogRead(A1);    //as you can see by this example, the code is easily scaled.
     med3 [0] = analogRead(A2);
@@ -54,7 +60,7 @@ void loop() {
   float sensor4voltage = sensor4value * (5.0 / 1023.0);*/
                  
   
-  if ( 2.12 < sensor1voltage && sensor1voltage < 2.5)
+  if (2.12 < sensor1voltage && sensor1voltage < 2.5)
 		sensor1dist = 1;                          // There will definitely be more blocks in the final version. The following code is a placeholder/outline
   if (1.93 < sensor1voltage && sensor1voltage < 2.12)
     sensor1dist = 2;
@@ -100,5 +106,8 @@ void loop() {
 
     Serial.println("Sensor 1 block");
     Serial.println(sensor1dist, DEC);
-}
+    }
+    
+  }
+
 
