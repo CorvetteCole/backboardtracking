@@ -23,9 +23,9 @@ void setup() {
  
 void loop() {
   sensor1voltage = analogRead(A0) * (5.0 / 1023.0);
-  /*sensor2voltage = analogRead(A0) * (5.0 / 1023.0); 
-  sensor3voltage = analogRead(A0) * (5.0 / 1023.0);
-  sensor4voltage = analogRead(A0) * (5.0 / 1023.0);*/
+  /*sensor2voltage = analogRead(A1) * (5.0 / 1023.0); 
+  sensor3voltage = analogRead(A2) * (5.0 / 1023.0);
+  sensor4voltage = analogRead(A3) * (5.0 / 1023.0);*/
     if (1.66 < sensor1voltage && sensor1voltage < 2.5) {
     Serial.println("broken");
     med1 [0] = sensor1voltage;
