@@ -20,51 +20,69 @@ void sort(int a[], int size) {
 void setup() {
   Serial.begin(9600);              // Use Serial Monitor window
 }
- 
-void loop() {
+void volt(int sensor){
+  if (sensor=1)
   sensor1voltage = analogRead(A0) * (5.0 / 1023.0);
-  /*sensor2voltage = analogRead(A1) * (5.0 / 1023.0); 
+  if (sensor=2)
+  sensor2voltage = analogRead(A1) * (5.0 / 1023.0);
+  if (sensor=3)
   sensor3voltage = analogRead(A2) * (5.0 / 1023.0);
-  sensor4voltage = analogRead(A3) * (5.0 / 1023.0);*/
+  if (sensor=4)
+  sensor4voltage = analogRead(A3) * (5.0 / 1023.0);
+}
+void loop() {
+  volt(1);
+  volt(2);
+  volt(3);
+  volt(4);
     if (1.66 < sensor1voltage && sensor1voltage < 2.5) {
     Serial.println("broken");
-    med1 [0] = sensor1voltage;
-   /* med2 [0] = sensor2voltage;    //as you can see by this example, the code is easily scaled.
-    med3 [0] = sensor3voltage;
-    med4 [0] = sensor4voltage;*/
+    med1 [0] = sensor1voltage;  
     delay(38);
-    med1 [1] = sensor1voltage;
-   /* med2 [1] = sensor2voltage;
-    med3 [1] = sensor3voltage;
-    med4 [1] = sensor4voltage);*/
+    volt(1);
+    med1 [1] = sensor1voltage;   
     delay(38);
-    med1 [2] = sensor1voltage;
-   /* med2 [2] = sensor2oltage;
-    med3 [2] = sensor3voltage;
-    med4 [2] = sensor4voltage;*/
-    delay(38);   
-
+    volt(1);
+    med1 [2] = sensor1voltage;   
     sort(med1,3);
-    /*sort(med2,3);
-    sort(med3,3);
-    sort(med4,3);*/
-    sensor1voltage = med1 [1];
-    /*sensor2voltage = med2 [1];
-    sensor3voltage = med3 [1];
-    sensor4voltage = med4 [1];*/                 
-  
-  if (2.12 < sensor1voltage && sensor1voltage < 2.5)
-		sensor1dist = 1;                          // There will definitely be more blocks in the final version. The following code is a placeholder/outline
-  if (1.93 < sensor1voltage && sensor1voltage < 2.12)
-    sensor1dist = 2;
-  if (1.82 < sensor1voltage && sensor1voltage < 1.93)
-		sensor1dist = 3;
-  if (1.73 < sensor1voltage && sensor1voltage < 1.82)        // Values in final version will be very different to reduce false readings
-		sensor1dist = 4;
-  if (1.66 < sensor1voltage && sensor1voltage < 1.73)
-    sensor1dist = 5;
-  if (sensor1voltage < 1.66)
-    return;
+    /*sort(med2,3);*/
+    sensor1voltage = med1 [1];                 
+      if (2.12 < sensor1voltage && sensor1voltage < 2.5)
+    		sensor1dist = 1;                         
+      if (1.93 < sensor1voltage && sensor1voltage < 2.12)
+        sensor1dist = 2;
+      if (1.82 < sensor1voltage && sensor1voltage < 1.93)
+    		sensor1dist = 3;
+      if (1.73 < sensor1voltage && sensor1voltage < 1.82)       
+    		sensor1dist = 4;
+      if (1.66 < sensor1voltage && sensor1voltage < 1.73)
+        sensor1dist = 5;
+      Serial.println("Sensor 1 block");
+      Serial.println(sensor1dist, DEC);
+    }    
+    if (1.66 < sensor2voltage && sensor2voltage < 2.5) {
+     med2 [0] = sensor2voltage;
+     delay(38); 
+     volt(2);
+     med2 [1] = sensor2voltage;
+     delay(38);
+     volt(2);
+     med3 [2] = sensor2voltage; 
+     sort(med2,3);
+     sensor2voltage = med2 [1];
+      if (2.12 < sensor2voltage && sensor2voltage < 2.5)
+        sensor2dist = 6;                         
+      if (1.93 < sensor2voltage && sensor2voltage < 2.12)
+        sensor2dist = 7;
+      if (1.82 < sensor2voltage && sensor2voltage < 1.93)
+        sensor2dist = 8;
+      if (1.73 < sensor2voltage && sensor2voltage < 1.82)       
+        sensor2dist = 9;
+      if (1.66 < sensor2voltage && sensor2voltage < 1.73)
+        sensor2dist = 10;
+      Serial.println("Sensor 2 block");
+      Serial.println(sensor2dist, DEC);
+    } 
 /*if (340 < sensor2voltage && sensor2voltage < 361.96)           //sensor 2 referencing begins
 		sensor2dist = 6;
   if (361.96 < sensor2voltage && sensor2voltage < 510)
@@ -94,13 +112,8 @@ void loop() {
   if (405.88 < sensor4voltage && sensor4voltage < 1020)
     sensor4dist = 19;
   if (427.84 < sensor4voltage && sensor4voltage < 449.8)
-    sensor4dist = 20;*/
+    sensor4dist = 20;*/   
    
-
-    Serial.println("Sensor 1 block");
-    Serial.println(sensor1dist, DEC);
-    }
-    
   }
 
 
