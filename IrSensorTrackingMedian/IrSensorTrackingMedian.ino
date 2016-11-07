@@ -36,31 +36,31 @@ void loop() {
   volt(3);
   volt(4);
     if (1.66 < sensor1voltage && sensor1voltage < 2.5) {
-    Serial.println("broken");
-    med1 [0] = sensor1voltage;  
-    delay(38);
-    volt(1);
-    med1 [1] = sensor1voltage;   
-    delay(38);
-    volt(1);
-    med1 [2] = sensor1voltage;   
-    sort(med1,3);
-    /*sort(med2,3);*/
-    sensor1voltage = med1 [1];                 
-      if (2.12 < sensor1voltage && sensor1voltage < 2.5)
-    		sensor1dist = 1;                         
-      if (1.93 < sensor1voltage && sensor1voltage < 2.12)
+      Serial.println("broken1");
+      med1 [0] = sensor1voltage;  
+      delay(38);
+      volt(1);
+      med1 [1] = sensor1voltage;   
+      delay(38);
+      volt(1);
+      med1 [2] = sensor1voltage;   
+      sort(med1,3);
+      sensor1voltage = med1 [1];                 
+       if (2.12 < sensor1voltage && sensor1voltage < 2.5)
+      	sensor1dist = 1;                         
+       if (1.93 < sensor1voltage && sensor1voltage < 2.12)
         sensor1dist = 2;
-      if (1.82 < sensor1voltage && sensor1voltage < 1.93)
-    		sensor1dist = 3;
-      if (1.73 < sensor1voltage && sensor1voltage < 1.82)       
-    		sensor1dist = 4;
-      if (1.66 < sensor1voltage && sensor1voltage < 1.73)
+       if (1.82 < sensor1voltage && sensor1voltage < 1.93)
+      	sensor1dist = 3;
+       if (1.73 < sensor1voltage && sensor1voltage < 1.82)       
+      	sensor1dist = 4;
+       if (1.66 < sensor1voltage && sensor1voltage < 1.73)
         sensor1dist = 5;
-      Serial.println("Sensor 1 block");
-      Serial.println(sensor1dist, DEC);
+       Serial.println("Sensor 1 block");
+       Serial.println(sensor1dist, DEC);
     }    
     if (1.66 < sensor2voltage && sensor2voltage < 2.5) {
+     Serial.println("Broken2");
      med2 [0] = sensor2voltage;
      delay(38); 
      volt(2);
