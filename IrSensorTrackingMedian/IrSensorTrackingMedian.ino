@@ -7,6 +7,7 @@ int med2 [3] = { };
 int med3 [3] = { };
 int med4 [3] = { };
 void sort(int a[], int size) {
+  Serial.println("sorting...");
     for(int i=0; i<(size-1); i++) {
         for(int o=0; o<(size-(i+1)); o++) {
                 if(a[o] > a[o+1]) {
@@ -21,29 +22,44 @@ void setup() {
   Serial.begin(9600);              // Use Serial Monitor window
 }
 void volt(int sensor){
-  if (sensor=1)
-  sensor1voltage = analogRead(A0) * (5.0 / 1023.0);
-  if (sensor=2)
-  sensor2voltage = analogRead(A1) * (5.0 / 1023.0);
-  if (sensor=3)
-  sensor3voltage = analogRead(A2) * (5.0 / 1023.0);
-  if (sensor=4)
-  sensor4voltage = analogRead(A3) * (5.0 / 1023.0);
+  if (sensor=1){
+  Serial.println("sensor1read");
+  sensor1voltage = analogRead(A0) * (5.0 / 1023.0); }
+  else if (sensor=2){
+  sensor2voltage = analogRead(A1) * (5.0 / 1023.0); }
+  else if (sensor=3){
+  sensor3voltage = analogRead(A2) * (5.0 / 1023.0); }
+  else if (sensor=4){
+  sensor4voltage = analogRead(A3) * (5.0 / 1023.0); }
 }
 void loop() {
   volt(1);
-  volt(2);
+  Serial.println("Volt1 ran");
+  /*volt(2);
   volt(3);
-  volt(4);
-    if (1.66 < sensor1voltage && sensor1voltage < 2.5) {      
-      med1 [0] = sensor1voltage;  
+  volt(4);*/
+  Serial.println(sensor1voltage, DEC);
+    if (1.66 < sensor1voltage && sensor1voltage < 2.5) {
+      Serial.println("sensor1 if statement activated");
+      Serial.println(sensor1voltage, DEC);      
+      med1 [0] = sensor1voltage;
+      Serial.println("first array value assigned to sensor1voltage");  
       delay(38);
+      Serial.println("1st 38 ms delay finished");
       volt(1);
+      Serial.println("volt1 for array value 2 ran"); 
+      Serial.println(sensor1voltage, DEC);
       med1 [1] = sensor1voltage;   
+      Serial.println("Value 2 of array assigned");
       delay(38);
+      Serial.println("2nd 38 ms delay finished");
       volt(1);
+      Serial.println("volt1 for array value 3 ran");
+      Serial.println(sensor1voltage, DEC);
       med1 [2] = sensor1voltage;   
+      Serial.println("Value 3 of array assigned");
       sort(med1,3);
+      Serial.println("Array sort ran");
       sensor1voltage = med1 [1];                 
        if (2.12 < sensor1voltage && sensor1voltage < 2.5) {
       	sensor1dist = 1; 
