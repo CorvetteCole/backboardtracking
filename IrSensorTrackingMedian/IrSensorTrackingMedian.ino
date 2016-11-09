@@ -22,14 +22,17 @@ void setup() {
   Serial.begin(9600);              // Use Serial Monitor window
 }
 void volt(int sensor){
-  if (sensor=1){
-  Serial.println("sensor1read");
-  sensor1voltage = analogRead(A0) * (5.0 / 1023.0); }
+  if (sensor=1){ 
+  sensor1voltage = analogRead(A0) * (5.0 / 1023.0); 
+  Serial.println("sensor1read");}
   else if (sensor=2){
+  Serial.println("sensor2read");
   sensor2voltage = analogRead(A1) * (5.0 / 1023.0); }
   else if (sensor=3){
+  Serial.println("sensor3read");
   sensor3voltage = analogRead(A2) * (5.0 / 1023.0); }
   else if (sensor=4){
+  Serial.println("sensor4read");
   sensor4voltage = analogRead(A3) * (5.0 / 1023.0); }
 }
 void loop() {
@@ -60,20 +63,29 @@ void loop() {
       Serial.println("Value 3 of array assigned");
       sort(med1,3);
       Serial.println("Array sort ran");
-      sensor1voltage = med1 [1];                 
+      Serial.println(med1 [1], DEC);
+      sensor1voltage = med1 [1]; 
+      Serial.println("sensor1voltage assigned from value 2 in array");
+      Serial.println(sensor1voltage, DEC);
+                      
        if (2.12 < sensor1voltage && sensor1voltage < 2.5) {
+      	Serial.println("block1 triggered");
       	sensor1dist = 1; 
       	Serial.println(sensor1dist, DEC);}                      
        else if (1.93 < sensor1voltage && sensor1voltage < 2.12) {
+        Serial.println("block2 triggered");
         sensor1dist = 2; 
         Serial.println(sensor1dist, DEC);}   
        else if (1.82 < sensor1voltage && sensor1voltage < 1.93) {
+      	Serial.println("block3 triggered");
       	sensor1dist = 3; 
       	Serial.println(sensor1dist, DEC);}   
        else if (1.73 < sensor1voltage && sensor1voltage < 1.82) {       
+      	Serial.println("block4 triggered");
       	sensor1dist = 4;
       	Serial.println(sensor1dist, DEC);}   
        else if (1.66 < sensor1voltage && sensor1voltage < 1.73) {
+        Serial.println("block5 triggered");
         sensor1dist = 5; 
         Serial.println(sensor1dist, DEC);}        
        
