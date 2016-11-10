@@ -24,7 +24,7 @@ void volt(int sensor){
   if (sensor == 1){ 
   sensor1voltage = analogRead(A0) * (5.0 / 1023.0); //deb:Serial.println("sensor1 read");
   }
-  else if (sensor == 2){                            //deb:Serial.println("sensor2 read");
+  /*else if (sensor == 2){                            //deb:Serial.println("sensor2 read");
   sensor2voltage = analogRead(A1) * (5.0 / 1023.0); 
   }
   else if (sensor == 3){                            //deb:Serial.println("sensor3 read");
@@ -32,14 +32,13 @@ void volt(int sensor){
   }
   else if (sensor == 4){                            //deb:Serial.println("sensor4 read");
   sensor4voltage = analogRead(A3) * (5.0 / 1023.0); 
-  }
+  }*/
 }
 void loop() {
   volt(1);                                          //deb:Serial.println("Volt1 ran");
-  volt(2);
+  /*volt(2);
   volt(3);
-  volt(4);
-  Serial.println(sensor1voltage, DEC);
+  volt(4);*/
     if (1.66 <= sensor1voltage && sensor1voltage <= 2.5) {  //deb:Serial.println("sensor1 if statement activated");  //deb:Serial.println(sensor1voltage, DEC);      
       med1 [0] = sensor1voltage;                    //deb:Serial.println("first array value assigned to sensor1voltage");  
       delay(38);                                    //deb:Serial.println("1st 38 ms delay finished");
@@ -67,8 +66,7 @@ void loop() {
         sensor1dist = 5;                                             //deb:Serial.println(sensor1dist, DEC);  
        }
     }    
-    /*if (1.66 < sensor2voltage && sensor2voltage < 2.5) {
-     Serial.println("Broken2");
+   /* if (1.66 <= sensor2voltage && sensor2voltage <= 2.5) {
      med2 [0] = sensor2voltage;
      delay(38); 
      volt(2);
@@ -80,16 +78,16 @@ void loop() {
      sensor2voltage = med2 [1];
       if (2.12 < sensor2voltage && sensor2voltage < 2.5)
         sensor2dist = 6;                         
-      if (1.93 < sensor2voltage && sensor2voltage < 2.12)
+      else if (1.93 < sensor2voltage && sensor2voltage < 2.12)
         sensor2dist = 7;
-      if (1.82 < sensor2voltage && sensor2voltage < 1.93)
+      else if (1.82 < sensor2voltage && sensor2voltage < 1.93)
         sensor2dist = 8;
-      if (1.73 < sensor2voltage && sensor2voltage < 1.82)       
+      else if (1.73 < sensor2voltage && sensor2voltage < 1.82)     
         sensor2dist = 9;
-      if (1.66 < sensor2voltage && sensor2voltage < 1.73)
-        sensor2dist = 10;
+      else if (1.66 < sensor2voltage && sensor2voltage < 1.73)
+        sensor2dist = 10; 
       Serial.println("Sensor 2 block");
-      Serial.println(sensor2dist, DEC);
+      Serial.println(sensor2dist, DEC); 
     } 
 /*if (340 < sensor2voltage && sensor2voltage < 361.96)           //sensor 2 referencing begins
 		sensor2dist = 6;
