@@ -5,7 +5,6 @@ int sensor1voltage,sensor2voltage,sensor3voltage,sensor4voltage,sensor1dist,sens
 int med1 [3] = { };
 int med2 [3] = { };
 int med3 [3] = { };
-int med4 [3] = { };
 void sort(int a[], int size) {
   Serial.println("sorting...");
     for(int i=0; i<(size-1); i++) {
