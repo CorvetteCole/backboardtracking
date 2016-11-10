@@ -1,11 +1,12 @@
 //code should be able to tell where a ball hits on the backboard. The backboard is seperated in to 20 blocks and the code can tell which block it hits in. This code is easily scalable.
 
 //IMPORTANT: Connect the top sensor to A0, top middle to A1, lower middle to A2, Lower to A3
-int sensor1voltage,sensor2voltage,sensor3voltage,sensor4voltage,sensor1dist,sensor2dist,sensor3dist,sensor4dist = 0;
-int med1 [3] = { };
-int med2 [3] = { };
-int med3 [3] = { };
-void sort(int a[], int size) {
+float sensor1voltage,sensor2voltage,sensor3voltage,sensor4voltage = 0;
+int sensor1dist,sensor2dist,sensor3dist,sensor4dist = 0;
+float med1 [3] = { };
+float med2 [3] = { };
+float med3 [3] = { };
+void sort(float a[], float size) {
   Serial.println("sorting...");
     for(int i=0; i<(size-1); i++) {
         for(int o=0; o<(size-(i+1)); o++) {
@@ -41,7 +42,7 @@ void loop() {
   volt(3);
   volt(4);*/
   Serial.println(sensor1voltage, DEC);
-    if (1.66 < sensor1voltage && sensor1voltage < 2.5) {
+    if (1.66 <= sensor1voltage && sensor1voltage <= 2.5) {
       Serial.println("sensor1 if statement activated");
       Serial.println(sensor1voltage, DEC);      
       med1 [0] = sensor1voltage;
