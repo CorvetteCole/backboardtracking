@@ -24,15 +24,15 @@ void setup() {
 void volt(int sensor){
   if (sensor=1){ 
   sensor1voltage = analogRead(A0) * (5.0 / 1023.0); 
-  Serial.println("sensor1read");}
+  Serial.println("sensor1 read");}
   else if (sensor=2){
-  Serial.println("sensor2read");
+  Serial.println("sensor2 read");
   sensor2voltage = analogRead(A1) * (5.0 / 1023.0); }
   else if (sensor=3){
-  Serial.println("sensor3read");
+  Serial.println("sensor3 read");
   sensor3voltage = analogRead(A2) * (5.0 / 1023.0); }
   else if (sensor=4){
-  Serial.println("sensor4read");
+  Serial.println("sensor4 read");
   sensor4voltage = analogRead(A3) * (5.0 / 1023.0); }
 }
 void loop() {
