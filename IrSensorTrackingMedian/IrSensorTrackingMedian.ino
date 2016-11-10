@@ -65,6 +65,8 @@ void loop() {
        else if (1.66 < sensor1voltage && sensor1voltage < 1.73) {    //deb:Serial.println("block5 triggered");
         sensor1dist = 5;                                             //deb:Serial.println(sensor1dist, DEC);  
        }
+       Serial.println("Sensor1 block";
+       Serial.println(sensor1dist, DEC);
     }    
    /* if (1.66 <= sensor2voltage && sensor2voltage <= 2.5) {
      med2 [0] = sensor2voltage;
