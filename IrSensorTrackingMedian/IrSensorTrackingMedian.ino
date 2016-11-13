@@ -8,11 +8,11 @@ float med2 [3] = { };
 float med3 [3] = { };
 void sort(float a[], float size) { //deb:Serial.println("sorting...");  
     for(int i=0; i<(size-1); i++) {
-        for(int o=0; o<(size-(i+1)); o++) {
-                if(a[o] > a[o+1]) {
-                    int t = a[o];
-                    a[o] = a[o+1];
-                    a[o+1] = t;
+        for(int j=0; j<(size-(i+1)); j++) {
+                if(a[j] > a[j+1]) {
+                    int t = a[j];
+                    a[j] = a[j+1];
+                    a[j+1] = t;
                 }
         }
     }
