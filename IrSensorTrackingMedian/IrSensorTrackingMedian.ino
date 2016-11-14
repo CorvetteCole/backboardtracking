@@ -21,24 +21,22 @@ void setup() {
   Serial.begin(9600);              // Use Serial Monitor window
 }
 void volt(int sensor){
-  if (sensor == 1){ 
-  sensor1voltage = analogRead(A0) * (5.0 / 1023.0); //deb:Serial.println("sensor1 read");
+  switch(sensor){ 
+   case 1:   
+    sensor1voltage = analogRead(A0) * (5.0 / 1023.0); //deb:Serial.println("sensor1 read");    
+   case 2:                                //deb:Serial.println("sensor2 read");
+    sensor2voltage = analogRead(A1) * (5.0 / 1023.0);     
+   case 3:                                //deb:Serial.println("sensor3 read");
+    sensor3voltage = analogRead(A2) * (5.0 / 1023.0);     
+   case 4:                                //deb:Serial.println("sensor4 read");
+    sensor4voltage = analogRead(A3) * (5.0 / 1023.0); 
   }
-  /*else if (sensor == 2){                            //deb:Serial.println("sensor2 read");
-  sensor2voltage = analogRead(A1) * (5.0 / 1023.0); 
-  }
-  else if (sensor == 3){                            //deb:Serial.println("sensor3 read");
-  sensor3voltage = analogRead(A2) * (5.0 / 1023.0); 
-  }
-  else if (sensor == 4){                            //deb:Serial.println("sensor4 read");
-  sensor4voltage = analogRead(A3) * (5.0 / 1023.0); 
-  }*/
 }
 void loop() {
   volt(1);                                          //deb:Serial.println("Volt1 ran");
-  /*volt(2);
+  volt(2);
   volt(3);
-  volt(4);*/
+  volt(4);
     if (1.66 <= sensor1voltage && sensor1voltage <= 2.5) {  //deb:Serial.println("sensor1 if statement activated");  //deb:Serial.println(sensor1voltage, DEC);      
       med1 [0] = sensor1voltage;                    //deb:Serial.println("first array value assigned to sensor1voltage");  
       delay(55);                                    //deb:Serial.println("1st 38 ms delay finished");
@@ -65,7 +63,7 @@ void loop() {
        else if (1.66 < sensor1voltage && sensor1voltage < 1.73) {    //deb:Serial.println("block5 triggered");
         sensor1dist = 5;                                             //deb:Serial.println(sensor1dist, DEC);  
        }
-       Serial.println("Sensor1 block";
+       Serial.println("Sensor1 block");
        Serial.println(sensor1dist, DEC);
     }    
    /* if (1.66 <= sensor2voltage && sensor2voltage <= 2.5) {
