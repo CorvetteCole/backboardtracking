@@ -46,7 +46,7 @@ void setup() {
 
 void loop() {
   sensor = analogRead(irSense);  // Read the sensor
-  float voltage = sensor  * (5.0 / 1023.0);      
+  float voltage = analogRead(A0)  * (5.0 / 1023.0);      
  
   Serial.println(voltage, DEC);   // Display value in Serial Monitor window
   delay(1000);                      // Wait 1/4 second for the next read
