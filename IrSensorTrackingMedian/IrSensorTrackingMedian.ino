@@ -41,6 +41,7 @@ void loop() {
   volt(2);
   volt(3);
   volt(4);
+  volt(5);
     if (1.66 <= sensorvoltage [0] && sensorvoltage [0] <= 2.5) { //deb:Serial.println("sensor1 if statement activated");  //deb:Serial.println(sensor1voltage, DEC);      
       med1 [0] = sensorvoltage [0];                    //deb:Serial.println("first array value assigned to sensor1voltage");  
       delay(55);                                    //deb:Serial.println("1st 38 ms delay finished");
