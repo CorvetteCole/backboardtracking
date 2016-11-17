@@ -2,6 +2,8 @@
 
 //IMPORTANT: Connect the top sensor to A0, top middle to A1, lower middle to A2, Lower to A3
 float sensor1voltage,sensor2voltage,sensor3voltage,sensor4voltage = 0;
+float sensorvoltage [4] = { };
+int sensordist [4] = { };
 int sensor1dist,sensor2dist,sensor3dist,sensor4dist = 0;
 float med1 [3] = { };
 float med2 [3] = { };
@@ -23,13 +25,13 @@ void setup() {
 void volt(int sensor){
   switch(sensor){ 
    case 1:   
-    sensor1voltage = analogRead(A0) * (5.0 / 1023.0); //deb:Serial.println("sensor1 read");    
+    sensorvoltage [0] = analogRead(A0) * (5.0 / 1023.0); //deb:Serial.println("sensor1 read");    
    case 2:                                //deb:Serial.println("sensor2 read");
-    sensor2voltage = analogRead(A1) * (5.0 / 1023.0);     
+    sensorvoltage [1] = analogRead(A1) * (5.0 / 1023.0);     
    case 3:                                //deb:Serial.println("sensor3 read");
-    sensor3voltage = analogRead(A2) * (5.0 / 1023.0);     
+    sensorvoltage [2] = analogRead(A2) * (5.0 / 1023.0);     
    case 4:                                //deb:Serial.println("sensor4 read");
-    sensor4voltage = analogRead(A3) * (5.0 / 1023.0); 
+    sensorvoltage [3] = analogRead(A3) * (5.0 / 1023.0); 
   }
 }
 void loop() {
@@ -37,8 +39,8 @@ void loop() {
   volt(2);
   volt(3);
   volt(4);
-    if (1.66 <= sensor1voltage && sensor1voltage <= 2.5) {  //deb:Serial.println("sensor1 if statement activated");  //deb:Serial.println(sensor1voltage, DEC);      
-      med1 [0] = sensor1voltage;                    //deb:Serial.println("first array value assigned to sensor1voltage");  
+    if (1.66 <= sensorvoltage [1] && sensorvoltage [1] <= 2.5) { //deb:Serial.println("sensor1 if statement activated");  //deb:Serial.println(sensor1voltage, DEC);      
+      med1 [0] = sensorvoltage [1];                    //deb:Serial.println("first array value assigned to sensor1voltage");  
       delay(55);                                    //deb:Serial.println("1st 38 ms delay finished");
       volt(1);                                      //deb:Serial.println("volt1 for array value 2 ran"); //deb:Serial.println(sensor1voltage, DEC);
       med1 [1] = sensor1voltage;                    //deb:Serial.println("Value 2 of array assigned");
