@@ -10,8 +10,6 @@ Tool provided in folder to measure voltages from the analog pin a sensor is conn
 # To-do
 -Add ability to transmit data via whatever method the other part of the team ended up choosing.
 
--Fully scale code to support as many sensors as we need (5 for now)
-
 -Update legacy sensor tracking code to support the 'only run when in range' method. This way is now working on the median code and only runs the main bulk of the code when something falls within the sensor range. On the median code this also allows for a 2 step failsafe to eliminate false positives. The main median code only runs when something is within sensor range. From there, it takes two more readings and if those are outside of sensor range it will disregard it as an anomaly and just continue. Really quite simple. 
 
 
