@@ -1,5 +1,6 @@
 # IrSensorTracking
 Allows the finding of generalized location of where a basketball hit on the backboard of a basketball goal.
+This code is being developed to allow blind people to play basketball. You can learn more about the rest of the project here: https://prodigiousmelon.github.io/index.html
 
 # LegacyIrSensorTracking
 Legacy tracking methods can be found in the 'legacy' branch now

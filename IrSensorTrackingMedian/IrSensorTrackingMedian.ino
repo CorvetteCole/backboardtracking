@@ -1,6 +1,6 @@
-//code should be able to tell where a ball hits on the backboard. The backboard is seperated in to 20 blocks and the code can tell which block it hits in. This code is easily scalable.
+//code should be able to tell where a ball hits on the backboard. The backboard is seperated in to 25 blocks and the code can tell which block it hits in. This code is easily scalable.
 
-//IMPORTANT: Connect the top sensor to A0, top middle to A1, lower middle to A2, Lower to A3
+//IMPORTANT: Connect the top sensor to A0, the one under it to A1, etc.
 float sensorvoltage [5] = { }, med1 [3] = { }, med2 [3] = { }, med3 [3] = { }, med4 [3] = { }, med5 [3] = { };
 int sensordist [5] = { }; 
 void sort(float a[], float size) { //deb:Serial.println("sorting...");  
