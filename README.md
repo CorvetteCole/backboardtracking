@@ -15,9 +15,11 @@ Tool provided in folder to measure voltages from the analog pin a sensor is conn
 
 
 # Development tools used
-UnoArduSim V1.6.3: Used and allowed me to see exactly where my code was decided to run awry. Would highly reccommend. Its fairly intuitive as well.
-ArduinoIDE: Pretty self explanatory. Just the official Arduino environment
-Github: Used to manage this repository
+-UnoArduSim V1.6.3: Used and allowed me to see exactly where my code was decided to run awry. Would highly reccommend. Its fairly intuitive as well.
+
+-ArduinoIDE: Pretty self explanatory. Just the official Arduino environment
+
+-Github: Used to manage this repository
 
 # Debugging
 To enable debugging (only on median code for now) hit control+F, find "//deb:", leave the replace field blank, and click replace all. Check serial monitor for debugging info
