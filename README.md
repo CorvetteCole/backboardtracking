@@ -15,7 +15,7 @@ Tool provided in folder to measure voltages from the analog pin a sensor is conn
 
 
 # Development tools used
--UnoArduSim V1.6.3: Used and allowed me to see exactly where my code was decided to run awry. Would highly reccommend. Its fairly intuitive as well.
+-UnoArduSim V1.6.3: Used and allowed me to see exactly where my code decided to run awry. Would highly reccommend. Its fairly intuitive as well.
 
 -ArduinoIDE: Pretty self explanatory. Just the official Arduino environment
 
