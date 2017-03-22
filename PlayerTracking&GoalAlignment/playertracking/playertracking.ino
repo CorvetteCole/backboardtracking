@@ -1,5 +1,5 @@
-int pin13, pin12, pin11, pin10, pin9, pin8, pin7, pin6, pin5, pin4;  //pins 13-9 are x axis, pins 8-4 are y axis 
-int x, y;
+int x, y, pin13, pin12, pin11, pin10, pin9, pin8, pin7, pin6, pin5, pin4, encoderValue = 0;  //pins 13-9 are x axis, pins 8-4 are y axis 
+void alignment(void), triangulate(void), count(void);
 
 void setup() {
   Serial.begin(9600);
@@ -13,6 +13,30 @@ void setup() {
   pinMode(6, INPUT_PULLUP);
   pinMode(5, INPUT_PULLUP);
   pinMode(4, INPUT_PULLUP);
+
+  pinMode(21, INPUT);   //replace 21 with whatever pin encoder is attached to
+  attachInterrupt(2, count, FALLING);
+  encoderValue = 0;
+}
+
+void loop() {
+ pin13 = digitalRead(13);
+ pin12 = digitalRead(12);
+ pin11 = digitalRead(11);
+ pin10 = digitalRead(10);
+ pin9 = digitalRead(9);
+ pin8 = digitalRead(8);
+ pin7 = digitalRead(7);
+ pin6 = digitalRead(6);
+ pin5 = digitalRead(5);
+ pin4 = digitalRead(4);
+ if ((pin13 == 1 || pin12 == 1 || pin11 == 1 || pin10 == 1 || pin9 == 1) && (pin8 == 1 || pin7 == 1 || pin6 == 1 || pin5 == 1 || pin4 == 1)) {
+ 
+  triangulate();
+  Serial.println(x);
+  Serial.println(y);
+  delay(500);
+   }
 }
 
 void triangulate() {
@@ -39,40 +63,14 @@ void triangulate() {
 alignmotor();
 }
 
-
 void alignmotor() {
   Serial.println("it works");
 }
 
-void loop() {
-
- pin13 = digitalRead(13);
- pin12 = digitalRead(12);
- pin11 = digitalRead(11);
- pin10 = digitalRead(10);
- pin9 = digitalRead(9);
- pin8 = digitalRead(8);
- pin7 = digitalRead(7);
- pin6 = digitalRead(6);
- pin5 = digitalRead(5);
- pin4 = digitalRead(4);
- if ((pin13 == 1 || pin12 == 1 || pin11 == 1 || pin10 == 1 || pin9 == 1) && (pin8 == 1 || pin7 == 1 || pin6 == 1 || pin5 == 1 || pin4 == 1)) {
- 
-  triangulate();
-  Serial.println(x);
-  Serial.println(y);
-  delay(500);
-  
- }
-
- 
- 
- 
- 
-
- 
-
-
-
+void count() {
+  encoderValue++;
+  Serial.print("Encoder value="); 
+  Serial.println(encoderValue);
 }
+
 
