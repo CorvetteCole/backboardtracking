@@ -1,5 +1,5 @@
-int x, y, pin13, pin12, pin11, pin10, pin9, pin8, pin7, pin6, pin5, pin4, encoderValue = 0;  //pins 13-9 are x axis, pins 8-4 are y axis 
-void alignment(void), triangulate(void), count(void);
+int x, y, angle, pin13, pin12, pin11, pin10, pin9, pin8, pin7, pin6, pin5, pin4, encoderValue = 0;  //pins 13-9 are x axis, pins 8-4 are y axis 
+void alignment(void), triangulate(void), count(void), forward(void), reverse(void);
 
 void setup() {
   Serial.begin(9600);
@@ -14,7 +14,7 @@ void setup() {
   pinMode(5, INPUT_PULLUP);
   pinMode(4, INPUT_PULLUP);
 
-  pinMode(2, INPUT);   //replace 21 with whatever pin encoder is attached to
+  pinMode(2, INPUT);   //replace 2 with whatever pin encoder is attached to
   attachInterrupt(digitalPinToInterrupt(2), count, FALLING);
   encoderValue = 0;
 }
@@ -65,6 +65,25 @@ alignmotor();
 
 void alignmotor() {
   Serial.println("it works");
+angle;// = some math to determine target angle;
+if (angle < encoderValue) {
+  forward();
+ }
+if (angle > encoderValue) {
+  reverse();
+ }
+}
+
+void forward() {
+  while (encoderValue != angle) {
+    digitalWrite(1,1); //forward motor pin
+  }   
+}
+
+void reverse() {
+  while (encoderValue != angle) {
+    digitalWrite(2,1); //reverse motor pin
+  }
 }
 
 void count() {
