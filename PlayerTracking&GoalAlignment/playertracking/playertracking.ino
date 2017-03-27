@@ -14,8 +14,8 @@ void setup() {
   pinMode(5, INPUT_PULLUP);
   pinMode(4, INPUT_PULLUP);
 
-  pinMode(21, INPUT);   //replace 21 with whatever pin encoder is attached to
-  attachInterrupt(2, count, FALLING);
+  pinMode(2, INPUT);   //replace 21 with whatever pin encoder is attached to
+  attachInterrupt(digitalPinToInterrupt(2), count, FALLING);
   encoderValue = 0;
 }
 

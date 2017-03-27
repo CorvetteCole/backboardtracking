@@ -12,6 +12,7 @@ Serial.println("13");
 Serial.println(digitalRead(13));
 Serial.println("12");
 Serial.println(digitalRead(12));
-
+Serial.println("11");
+Serial.println(digitalRead(11));
 delay(500);
 }
