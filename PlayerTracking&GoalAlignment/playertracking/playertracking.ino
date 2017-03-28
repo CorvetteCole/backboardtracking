@@ -43,25 +43,25 @@ void loop() {
 
 void triangulate() {
  if (pin13 == 1) { 
-  x = -16.8; }
+  x = -50; }
  else if (pin12 == 1) {
-  x = -8.4; }
+  x = -25; }
  else if (pin11 == 1) {
   x = 0; }
  else if (pin10 == 1) {
-  x = 8.4; }
+  x = 25; }
  else if (pin9 == 1) {
-  x = 16.8; } 
+  x = 50; } 
  if (pin8 == 1) {
-  y = -20; }
- else if (pin7 == 1) {
-  y = -10; }
- else if (pin6 == 1) {
   y = 0; }
+ else if (pin7 == 1) {
+  y = 10.5; }
+ else if (pin6 == 1) {
+  y = 21; }
  else if (pin5 == 1) {
-  y = 10; }
+  y = 31.5; }
  else if (pin4 == 1) {
-  y = 20; }   
+  y = 42; }   
 alignmotor();
 }
 
