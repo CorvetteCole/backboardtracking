@@ -1,4 +1,6 @@
 int x, y, angle, pin13, pin12, pin11, pin10, pin9, pin8, pin7, pin6, pin5, pin4, encoderValue = 0;  //pins 13-9 are x axis, pins 8-4 are y axis 
+float radian;
+const float Pi = 3.14159;
 void alignment(void), triangulate(void), count(void), forward(void), reverse(void);
 
 void setup() {
@@ -41,31 +43,48 @@ void loop() {
 
 void triangulate() {
  if (pin13 == 1) { 
-  x = 1; }
+  x = -16.8; }
  else if (pin12 == 1) {
-  x = 2; }
+  x = -8.4; }
  else if (pin11 == 1) {
-  x = 3; }
+  x = 0; }
  else if (pin10 == 1) {
-  x = 4; }
+  x = 8.4; }
  else if (pin9 == 1) {
-  x = 5; } 
+  x = 16.8; } 
  if (pin8 == 1) {
-  y = 1; }
+  y = -20; }
  else if (pin7 == 1) {
-  y = 2; }
+  y = -10; }
  else if (pin6 == 1) {
-  y = 3; }
+  y = 0; }
  else if (pin5 == 1) {
-  y = 4; }
+  y = 10; }
  else if (pin4 == 1) {
-  y = 5; }   
+  y = 20; }   
 alignmotor();
 }
 
 void alignmotor() {
   Serial.println("it works");
-angle;// = some math to determine target angle;
+if (x != 0) {
+  radian = atan(y/x);
+  angle = (radian * 180)/Pi;
+}
+else if (x == 0) {
+  angle = 0;
+}
+else if ((y == 0) && (x < 0)) {
+  angle = 270;
+}
+else if ((y == 0) && (x > 0)) {
+  angle = 90;
+}
+
+if (angle < 0) {
+  angle = 360 + angle;
+}
+
 if (angle < encoderValue) {
   forward();
  }
