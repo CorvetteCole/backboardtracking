@@ -1,5 +1,5 @@
-int x, y, angle, pin13, pin12, pin11, pin10, pin9, pin8, pin7, pin6, pin5, pin4, encoderValue = 0;  //pins 13-9 are x axis, pins 8-4 are y axis 
-float radian;
+int angle, pin13, pin12, pin11, pin10, pin9, pin8, pin7, pin6, pin5, pin4, encoderValue = 0;  //pins 13-9 are x axis, pins 8-4 are y axis 
+float radian, x, y;
 const float Pi = 3.14159;
 void alignment(void), triangulate(void), count(void), forward(void), reverse(void);
 
