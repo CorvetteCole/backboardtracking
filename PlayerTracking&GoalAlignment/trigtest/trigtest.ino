@@ -12,12 +12,12 @@ void loop(){
 
 //waiting for input
 Serial.println("x=");
-while (Serial.available() == 0);
+while (Serial.available() == 0) {}
 x = Serial.parseFloat();
 Serial.flush();
 
 Serial.println("y=");
-while (Serial.available() == 0);
+while (Serial.available() == 0) {}
 y = Serial.parseFloat(); //read int or parseFloat for ..float...
 
 
