@@ -1,5 +1,6 @@
 #include <RFM69.h>
-#include <SPI.h>
+#include <RFM69registers.h>
+#include <RFM69_ATC.h> 
 
 #define NETWORKID     0   // Must be the same for all nodes
 #define MYNODEID      1   // My node ID
