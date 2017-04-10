@@ -1,6 +1,11 @@
 # Player Tracking & Goal Alignment
 This program keeps track of player location on the court and points the basketball returner towards the shooter, allowing them to retrieve it after shooting
 
+#To-do
+- Develop code for playertracking slave arduinos as well as modify existing code on the master to support receiving grid coordinates
+
+- Modify and fully test code for the motor (adjusting the encoder readout for the gear ratio between the motor and lazy susan)
+
 # Development tools used
 -Breakout radio sensor library for arduino: https://github.com/sparkfun/RFM69HCW_Breakout/archive/master.zip
 
