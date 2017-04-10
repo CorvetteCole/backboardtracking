@@ -4,8 +4,8 @@
 // Addresses for this node. CHANGE THESE FOR EACH NODE!
 
 #define NETWORKID     0   // Must be the same for all nodes
-#define MYNODEID      1   // My node ID
-#define TONODEID      2   // Destination node ID
+#define MYNODEID      2   // My node ID
+#define TONODEID      1   // Destination node ID
 
 // RFM69 frequency, uncomment the frequency of your module:
 
