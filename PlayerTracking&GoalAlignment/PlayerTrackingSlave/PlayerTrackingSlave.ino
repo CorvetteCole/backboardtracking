@@ -1,4 +1,5 @@
 int x;
+void sendx(void);
 #include <RFM69.h>
 #include <RFM69registers.h>
 #include <RFM69_ATC.h> 
@@ -34,9 +35,10 @@ void setup()
   Serial.print("Node ");
   Serial.print(MYNODEID,DEC);
   Serial.println(" ready");  
-
+  pinMode(8, INPUT_PULLUP);
+  pinMode(7, INPUT_PULLUP);
   // Initialize the RFM69HCW:
-
+  x = 0;
   radio.initialize(FREQUENCY, MYNODEID, NETWORKID);
   radio.setHighPower(); // Always use this for RFM69HCW
 
@@ -48,13 +50,22 @@ void setup()
 
 void loop()
 {
-  x = 4;
-  // SENDING
-  static int sendlength = 1;
-  radio.send(TONODEID, &x, sendlength);
+ if ((digitalRead(8) == 1) || (digitalRead(7))) {
+  
+  if (digitalRead(8) == 1) {
+    x = 1;  
+  }
+  if (digitalRead(7) == 1) {
+    x = 2;
+  }
+  sendx();
+  
+ }
+}  
 
-  
-    }
-  
+void sendx() {
+   static int sendlength = 1;
+  radio.send(TONODEID, &x, sendlength);
+}
 
 
