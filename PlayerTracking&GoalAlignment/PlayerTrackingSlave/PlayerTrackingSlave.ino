@@ -20,7 +20,7 @@ int x;
 
 // Use ACKnowledge when sending messages (or not):
 
-#define USEACK        true // Request ACKs or not
+#define USEACK        false // Request ACKs or not
 
 // Create a library object for our RFM69HCW module:
 
@@ -48,13 +48,10 @@ void setup()
 
 void loop()
 {
-  x = 3;
+  x = 4;
   // SENDING
   static int sendlength = 1;
-  if (radio.sendWithRetry(TONODEID, &x, sendlength))
-          Serial.println("ACK received!");
-        else
-          Serial.println("no ACK received");
+  radio.send(TONODEID, &x, sendlength);
 
   
     }

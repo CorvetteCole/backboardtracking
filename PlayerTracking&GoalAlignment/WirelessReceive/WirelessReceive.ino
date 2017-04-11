@@ -18,11 +18,12 @@
 
 // Use ACKnowledge when sending messages (or not):
 
-#define USEACK        true // Request ACKs or not
+#define USEACK        false // Request ACKs or not
 
 // Create a library object for our RFM69HCW module:
 
 RFM69 radio;
+int u;
 
 void setup()
 {
@@ -48,7 +49,8 @@ void loop()
     int *pData = (int*)radio.DATA;
 
     for (byte i = 0; i < radio.DATALEN; i+=2)
-      Serial.print(*pData++);
+      u = (*pData++);
+      Serial.print(u);
 
     Serial.print("\n" );
   }
