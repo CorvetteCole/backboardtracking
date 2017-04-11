@@ -6,7 +6,7 @@ void sendx(void);
 // Addresses for this node. CHANGE THESE FOR EACH NODE!
 
 #define NETWORKID     0   // Must be the same for all nodes
-#define MYNODEID      2   // My node ID
+#define MYNODEID      3   // My node ID
 #define TONODEID      1   // Destination node ID
 
 // RFM69 frequency, uncomment the frequency of your module:
@@ -55,7 +55,7 @@ void loop()
   if (digitalRead(8) == 1) {
     x = 1;  
   }
-  if (digitalRead(7) == 1) {
+  if (digitalRead(7) == 1) {  //add digitalreads as needed
     x = 2;
   }
   sendx();
@@ -64,7 +64,8 @@ void loop()
 }  
 
 void sendx() {
-   static int sendlength = 1;
+  x = x + 30; //only activate this code if this slave is the x slave
+  static int sendlength = 1;
   radio.send(TONODEID, &x, sendlength);
 }
 

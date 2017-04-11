@@ -1,68 +1,60 @@
-int angle, pin13, pin12, pin11, pin10, pin9, pin8, pin7, pin6, pin5, pin4, encoderValue = 0;  //pins 13-9 are x axis, pins 8-4 are y axis 
+int angle, encoderValue, u = 0;
 float radian, x, y;
 const float Pi = 3.14159;
-void alignment(void), triangulate(void), count(void), forward(void), reverse(void);
+void alignment(void), count(void), forward(void), reverse(void);
+
+#include <RFM69.h>
+#include <RFM69registers.h>
+#include <RFM69_ATC.h> 
+
+#define NETWORKID     0   // Must be the same for all nodes
+#define MYNODEID      1   // My node ID
+#define TONODEID      2   // Destination node ID
+
+#define FREQUENCY     RF69_915MHZ
+#define ENCRYPT       false
+#define USEACK        false
+RFM69 radio;
 
 void setup() {
   Serial.begin(9600);
-  pinMode(13, INPUT_PULLUP);
-  pinMode(12, INPUT_PULLUP);
-  pinMode(11, INPUT_PULLUP);
-  pinMode(10, INPUT_PULLUP);
-  pinMode(9, INPUT_PULLUP);
-  pinMode(8, INPUT_PULLUP);
-  pinMode(7, INPUT_PULLUP);
-  pinMode(6, INPUT_PULLUP);
-  pinMode(5, INPUT_PULLUP);
-  pinMode(4, INPUT_PULLUP);
-
+  radio.initialize(FREQUENCY, MYNODEID, NETWORKID);
+  radio.setHighPower(); // Always use this for RFM69HCW
+  
   pinMode(2, INPUT);   //replace 2 with whatever pin encoder is attached to
   attachInterrupt(digitalPinToInterrupt(2), count, FALLING);
   encoderValue = 0;
 }
 
 void loop() {
- pin13 = digitalRead(13);
- pin12 = digitalRead(12);
- pin11 = digitalRead(11);
- pin10 = digitalRead(10);
- pin9 = digitalRead(9);
- pin8 = digitalRead(8);
- pin7 = digitalRead(7);
- pin6 = digitalRead(6);
- pin5 = digitalRead(5);
- pin4 = digitalRead(4);
- if ((pin13 == 1 || pin12 == 1 || pin11 == 1 || pin10 == 1 || pin9 == 1) && (pin8 == 1 || pin7 == 1 || pin6 == 1 || pin5 == 1 || pin4 == 1)) {
- 
-  triangulate();
-  Serial.println(x);
-  Serial.println(y);
-  delay(500);
-   }
-}
+ if (radio.receiveDone()) // Got one!
+  {
+    // The actual message is contained in the DATA array,
+    // and is DATALEN bytes in size:
+    // NOTE: each element is an int (2 bytes), so need to recast the data as such...
+    int *pData = (int*)radio.DATA;
 
-void triangulate() {
- if (pin13 == 1) { 
-  x = -50; }
- else if (pin12 == 1) {
-  x = -25; }
- else if (pin11 == 1) {
-  x = 0; }
- else if (pin10 == 1) {
-  x = 25; }
- else if (pin9 == 1) {
-  x = 50; } 
- if (pin8 == 1) {
-  y = 0; }
- else if (pin7 == 1) {
-  y = 10.5; }
- else if (pin6 == 1) {
-  y = 21; }
- else if (pin5 == 1) {
-  y = 31.5; }
- else if (pin4 == 1) {
-  y = 42; }   
-alignmotor();
+    for (byte i = 0; i < radio.DATALEN; i+=2)
+      u = (*pData++);
+      Serial.print(u);
+      Serial.print("\n" );
+    if (u > 10) {     //x slave will add 30 to its value before transmission, y slave will not
+      y = u-30;
+      u = 0;
+    }
+    if (u < 10) {
+      x = u;
+      u = 0; 
+    }
+ 
+   if ((x >= 1) && (y >= 1)) {
+ 
+    Serial.println(x);
+    Serial.println(y);
+    delay(500);
+    alignmotor();
+    }
+  }
 }
 
 void alignmotor() {
