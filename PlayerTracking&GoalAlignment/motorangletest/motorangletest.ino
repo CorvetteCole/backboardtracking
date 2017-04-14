@@ -1,5 +1,11 @@
 #include <digitalWriteFast.h>
 
+
+int angle, input, PWM;
+void count(void), align(void);
+
+#include <digitalWriteFast.h>
+
 // It turns out that the regular digitalRead() calls are too slow and bring the arduino down when
 // I use them in the interrupt routines while the motor runs at full speed.
 
@@ -16,13 +22,11 @@ volatile bool _LeftEncoderBSet;
 volatile bool _LeftEncoderAPrev;
 volatile bool _LeftEncoderBPrev;
 volatile long _LeftEncoderTicks = 0;
+int encoderValue;
 
-
-void setup()
-{
+void setup()  {
   Serial.begin(9600);
-
-  // Quadrature encoders
+// Quadrature encoders
   // Left encoder
   pinMode(c_LeftEncoderPinA, INPUT);      // sets pin A as input
   digitalWrite(c_LeftEncoderPinA, LOW);  // turn on pullup resistors
@@ -30,19 +34,45 @@ void setup()
   digitalWrite(c_LeftEncoderPinB, LOW);  // turn on pullup resistors
   attachInterrupt(c_LeftEncoderInterruptA, HandleLeftMotorInterruptA, CHANGE);
   attachInterrupt(c_LeftEncoderInterruptB, HandleLeftMotorInterruptB, CHANGE);
+  Serial.println("desired angle in degrees");
+  PWM = 255;
+} 
+
+void loop()  {
+    int encoderValue = encoderCalc();
+    while (Serial.available() == 0) {}
+    input = Serial.parseFloat();
+    if (input != 0) {
+      angle = input;
+      align();
+      Serial.println(encoderValue);
+    }
 }
 
-void loop()
-{ 
-  int encoderValue = encoderCalc();
-  Serial.print("Encoder Ticks: ");
-  Serial.print(_LeftEncoderTicks);
-  Serial.print("  Revolutions: ");
-  Serial.print(_LeftEncoderTicks/1856.0);//1856 Counts Per Revolution
-  Serial.print("  Angle:  ");
-  Serial.print(encoderValue);
-  Serial.print("\n");
-}
+void align(){  
+   while ((encoderValue) != angle) { 
+    encoderValue = encoderCalc();
+    if (((encoderValue < angle+10)) && (encoderValue > (angle-10))) {
+      PWM = 60;
+    }
+    else PWM = 120;
+    if ((encoderValue) < angle) {
+      digitalWrite(8, HIGH);
+      digitalWrite(9, LOW);
+      analogWrite(5, PWM);   //0-255 range for motor speed  
+    }
+    if (encoderValue > angle) {
+      digitalWrite(8, LOW);
+      digitalWrite(9, HIGH);
+      analogWrite(5, PWM); 
+    }
+    Serial.println(encoderValue);
+   
+   
+      }
+      digitalWrite(8, LOW);
+      digitalWrite(9, LOW);
+}  
 
 
 // Interrupt service routines for the left motor's quadrature encoder
@@ -89,3 +119,5 @@ int encoderCalc() {
   i = _LeftEncoderTicks * (360/1856.0);
   return i;
 }
+
+

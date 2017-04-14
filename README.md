@@ -7,6 +7,8 @@ This program keeps track of player location on the court and points the basketba
 - Modify and fully test code for the motor (adjusting the encoder readout for the gear ratio between the motor and lazy susan)
 
 # Development tools used
+-DigitalWriteFast library used to allow for accurate encoder readings
+
 -Breakout radio sensor library for arduino: https://github.com/sparkfun/RFM69HCW_Breakout/archive/master.zip
 
 -UnoArduSim V1.6.3: Used and allowed me to see exactly where my code decided to run awry. Would highly reccommend. Its fairly intuitive as well.
