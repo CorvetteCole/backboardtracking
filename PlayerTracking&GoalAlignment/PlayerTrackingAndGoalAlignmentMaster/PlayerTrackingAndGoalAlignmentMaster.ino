@@ -27,8 +27,8 @@ volatile long EncoderTicks = 0;
 
 //Other declarations
 int angle, encoderValue, PWM, ux, uy, u = 0;
-float x, y;
 void align(void);
+const float Pi = 3.14159;
 
 
 
@@ -114,6 +114,8 @@ int encoderCalc() {
 }
 
 int angleCalc() {
+ int a;
+ float radian, x, y; 
  switch(ux) {
   case -3:     //change x to equal each sensors respective distance from the backboard
    x = 0;
@@ -130,7 +132,36 @@ int angleCalc() {
   case 3:
    x = 0;
  }
- switch(uy) {
+ switch(uy) { 
+  case 1:
+   y = 0;
+  case 2:
+   y = 0;   //replace 0s with actual values of the y sensors
+  case 3:
+   y = 0;
+  case 4:
+   y = 0;
+  case 5:
+   y = 0;
+  case 6:
+   y = 0;
+  case 7:
+   y = 0; 
+ }
+if (y == 0 && x < 0) {
+  a = -90;
+}
+else if (y == 0 && x > 0) {
+  a = 90;
+}
+else if (x == 0) {
+  a = 0;
+}
+else {
+  radian = atan(y/x);
+  a = (radian * 180)/Pi;
+}
+return a;
 }
 
 // Interrupt service routines for the  motor's quadrature encoder
