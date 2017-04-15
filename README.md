@@ -1,10 +1,10 @@
 # Player Tracking & Goal Alignment
-This program keeps track of player location on the court and points the basketball returner towards the shooter, allowing them to retrieve it after shooting
+This program keeps track of player location on the court and points the basketball returner towards the player, allowing them to retrieve it after shooting
 
 #To-do
-- Develop code for playertracking slave arduinos as well as modify existing code on the master to support receiving grid coordinates
+- More thoroughly test the motorangletest program as well as test the master player tracking program
 
-- Modify and fully test code for the motor (adjusting the encoder readout for the gear ratio between the motor and lazy susan)
+
 
 # Development tools used
 -DigitalWriteFast library used to allow for accurate encoder readings
@@ -15,14 +15,14 @@ This program keeps track of player location on the court and points the basketba
 
 -ArduinoIDE: Pretty self explanatory. Just the official Arduino environment
 
--Github: Used to manage this repository
+-Git Bash: Used to manage this repository
 
 # BackboardTracking
 Allows the finding of generalized location of where a basketball hit on the backboard of a basketball goal.
-This code is being developed to allow blind people to play basketball. You can learn more about the rest of the project here: https://prodigiousmelon.github.io/index.html
+This code is being developed to allow blind people to play basketball.
 
 # Legacy
-Legacy ir tracking methods can be found in the 'legacy' branch now
+Legacy IR tracking methods can be found in the 'legacy' branch now
 
 # VoltageMeasuring
 Tool provided in folder to measure voltages from the analog pin a sensor is connected to. Tracking code is independant of this file. In other words, this isn't needed to run the main code.
