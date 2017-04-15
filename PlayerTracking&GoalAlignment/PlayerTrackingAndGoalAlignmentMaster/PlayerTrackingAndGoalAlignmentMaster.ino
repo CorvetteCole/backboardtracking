@@ -64,7 +64,7 @@ void loop() {
       ux = u-30;
       u = 0;
     }
-    if (u < 10) {
+    else if (u < 10) {
       uy = u;
       u = 0; 
     }
@@ -74,8 +74,8 @@ void loop() {
     Serial.println(ux);
     Serial.print(", ");
     Serial.print(uy);
-    delay(500);
-    align();
+    delay(500);   //just allows me to interpret what is happening, will remove later
+    align();  
     }
   }
 }
@@ -83,13 +83,13 @@ void loop() {
 void align() {
   encoderValue = encoderCalc();
   angle = angleCalc();   
-   while ((encoderValue) != angle) { 
+   while (encoderValue != angle) { 
     encoderValue = encoderCalc();
-    if (((encoderValue < angle+10)) && (encoderValue > (angle-10))) {
+    if (encoderValue < angle+10 && encoderValue > angle-10) {
       PWM = 60;
     }
     else PWM = 120;
-    if ((encoderValue) < angle) {
+    if (encoderValue < angle) {
       digitalWrite(8, HIGH);
       digitalWrite(9, LOW);
       analogWrite(5, PWM);   //0-255 range for motor speed  
@@ -117,7 +117,7 @@ int angleCalc() {
  int a;
  float radian, x, y; 
  switch(ux) {
-  case -3:     //change x to equal each sensors respective distance from the backboard
+  case -3:     //change 0s to equal actual distance values for x axis
    x = 0;
   case -2:
    x = 0;
