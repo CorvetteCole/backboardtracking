@@ -7,7 +7,7 @@ void sendx(void);
 
 #define NETWORKID     0   // Must be the same for all nodes
 #define MYNODEID      3   // My node ID
-#define TONODEID      1   // Destination node ID
+#define TONODEID      1   // Destination node ID (1 is the master arduino)
 
 // RFM69 frequency, uncomment the frequency of your module:
 
@@ -50,10 +50,10 @@ void setup()
 
 void loop()
 {
- if ((digitalRead(8) == 1) || (digitalRead(7))) {
+ if ((digitalRead(8)) == 1) || (digitalRead(7))) {
   
   if (digitalRead(8) == 1) {
-    x = 1;  
+    x = 1;                    //y slave will be from 0 to 6, x slave will be from -3 to 3
   }
   if (digitalRead(7) == 1) {  //add digitalreads as needed
     x = 2;
