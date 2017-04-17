@@ -34,7 +34,16 @@ void setup()  {
 } 
 
 void loop()  {
-    while (Serial.available() == 0) {}
+    encoderValue = encoderCalc();
+    if (encoderValue != angle) {
+      void align();
+    }
+    while (Serial.available() == 0) {
+      encoderValue = encoderCalc();
+    if (encoderValue != angle) {
+      void align();
+      }
+    }
     input = Serial.parseFloat();
     if (input != 0) {
       angle = input;
@@ -44,32 +53,28 @@ void loop()  {
     }
 }
 
-void align(){  
-    encoderValue = encoderCalc();   
-   while ((encoderValue) != angle) { 
-    encoderValue = encoderCalc();
-    if (((encoderValue < angle+10)) && (encoderValue > (angle-10))) {
-      PWM = 60;
+void align(){    
+   while (encoderValue != angle) { 
+    if ((encoderValue < (angle+10)) && (encoderValue > (angle-10))) {
+      PWM = 45;
     }
-    else PWM = 120;
-    if ((encoderValue) < angle) {
-      digitalWrite(8, HIGH);
-      digitalWrite(9, LOW);
+    else PWM = 45;
+    if (encoderValue < angle) {
+      digitalWrite(6, HIGH);
+      digitalWrite(7, LOW);
       analogWrite(5, PWM);   //0-255 range for motor speed  
     }
     if (encoderValue > angle) {
-      digitalWrite(8, LOW);
-      digitalWrite(9, HIGH);
+      digitalWrite(6, LOW);
+      digitalWrite(7, HIGH);
       analogWrite(5, PWM); 
     }
+    encoderValue = encoderCalc();
     Serial.println(encoderValue);
-   
-   
-      }
-      digitalWrite(8, LOW);
-      digitalWrite(9, LOW);
-}  
-
+  }
+     digitalWrite(6, LOW);
+     digitalWrite(7, LOW);
+}
 
 // Interrupt service routines for the  motor's quadrature encoder
 void HandleMotorInterruptA(){
@@ -111,7 +116,7 @@ int ParseEncoder(){
 }
 
 int encoderCalc() {
-  int i;
+  int i;                              //gearing ratio should be 35/7.5
   i = EncoderTicks * (360/1856.0);
   return i;
 }
