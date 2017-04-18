@@ -88,8 +88,8 @@ void align() {
   encoderValue = encoderCalc();
   angle = angleCalc();   
    while (encoderValue != angle) { 
-    if (encoderValue < angle+10 && encoderValue > angle-10) {
-      PWM = 45;
+    if ((encoderValue > (angle+30)) || (encoderValue < (angle-30))) {
+      PWM = 90;
     }
     else PWM = 45;
     if (encoderValue < angle) {
