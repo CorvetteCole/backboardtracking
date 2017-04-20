@@ -87,5 +87,6 @@ int ParseEncoder(){
 int encoderCalc() {
   int i;
   i = _LeftEncoderTicks * (360/1856.0);
+  i = i / (35/7.5);   //adjust for ratio between drive wheel and lazy susan
   return i;
 }

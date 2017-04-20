@@ -19,7 +19,7 @@ volatile bool EncoderBSet;
 volatile bool EncoderAPrev;
 volatile bool EncoderBPrev;
 volatile long EncoderTicks = 0;
-int encoderValue;
+int encoderValue = 0;
 
 void setup()  {
   Serial.begin(9600);
@@ -55,10 +55,10 @@ void loop()  {
 
 void align(){    
    while (encoderValue != angle) { 
-    if ((encoderValue > (angle+30)) || (encoderValue < (angle-30))) {
-      PWM = 90;
+    if ((encoderValue > (angle+40)) || (encoderValue < (angle-40))) {
+      PWM = 120;
     }
-    else PWM = 45;
+    else PWM = 80;
     if (encoderValue < angle) {
       digitalWrite(6, HIGH);
       digitalWrite(7, LOW);
@@ -116,8 +116,9 @@ int ParseEncoder(){
 }
 
 int encoderCalc() {
-  int i;                              //gearing ratio should be 35/7.5
+  int i = 0;                              //gearing ratio should be 35/7.5
   i = EncoderTicks * (360/1856.0);
+  i = i / (35/7.5);   //adjust for ratio between drive wheel and lazy susan
   return i;
 }
 

@@ -26,7 +26,7 @@ volatile bool EncoderBPrev;
 volatile long EncoderTicks = 0;
 
 //Other declarations
-int angle, encoderValue, PWM, ux, uy, u = 0;
+int angle, PWM, ux, uy, encoderValue = 0, u = 0;
 void align(void);
 const float Pi = 3.14159;
 
@@ -110,7 +110,7 @@ void align() {
 }  
 
 int encoderCalc() {
-  int i;                       //gearing ratio should be (35/7.5)
+  int i = 0;                       //gearing ratio should be (35/7.5)
   i = EncoderTicks * (360/1856.0);
   return i;
 }
@@ -120,35 +120,35 @@ int angleCalc() {
  float radian, x, y; 
  switch(ux) {
   case -3:     //change 0s to equal actual distance values for x axis
-   x = 0;
+   x = -25;
   case -2:
-   x = 0;
+   x = -16.66;
   case -1:
-   x = 0;
+   x = -8.33;
   case 0:
    x = 0;
   case 1:
-   x = 0;
+   x = 8.33;
   case 2:
-   x = 0;
+   x = 16.66;
   case 3:
-   x = 0;
+   x = 25;
  }
  switch(uy) { 
+  case 0:
+   y = 0;
   case 1:
-   y = 0;
+   y = 7.33;
   case 2:
-   y = 0;   //replace 0s with actual values of the y sensors
+   y = 15.66;   //replace 0s with actual values of the y sensors
   case 3:
-   y = 0;
+   y = 23.5;
   case 4:
-   y = 0;
+   y = 31.33;
   case 5:
-   y = 0;
+   y = 39.15;
   case 6:
-   y = 0;
-  case 7:
-   y = 0; 
+   y = 47;
  }
 if (y == 0 && x < 0) {
   a = -90;
