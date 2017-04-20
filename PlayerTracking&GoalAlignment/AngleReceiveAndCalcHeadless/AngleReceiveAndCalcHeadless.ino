@@ -14,9 +14,9 @@
 RFM69 radio;
 
 //Other declarations
-int angle, PWM, ux, uy, encoderValue = 0, u = 0;
-void align(void);
+int angle, ux = 0, uy = 0, u = 0;
 const float Pi = 3.14159;
+
 
 
 
@@ -51,18 +51,16 @@ void loop() {
     }
  
    if (uy >= 0) {
- 
     Serial.println(ux);
-    Serial.print(", ");
-    Serial.print(uy);
-    angle = angleCalc(); 
+    Serial.println(uy);
+    angle = angleCalc(ux, uy); 
     Serial.println(angle); 
     }
   }
 }
 
 
-int angleCalc() {
+int angleCalc(int ux, int uy) {
  int a;
  float radian, x, y; 
  switch(ux) {
@@ -97,19 +95,21 @@ int angleCalc() {
   case 6:
    y = 47;
  }
+ Serial.println(x);
+ Serial.println(y);
 if (y == 0 && x < 0) {
   a = -90;
-}
+ }
 else if (y == 0 && x > 0) {
   a = 90;
-}
+ }
 else if (x == 0) {
   a = 0;
-}
+ }
 else {
   radian = atan(y/x);
   a = (radian * 180)/Pi;
-}
-return a;
+ }
+ return a;
 }
 

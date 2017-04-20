@@ -47,17 +47,15 @@ void setup()
 
 void loop() {
 while (Serial.available() == 0) {}
-    input = Serial.parseFloat();
+    input = Serial.parseInt();
     x = input;
+    Serial.println(x);
     sendx();
 }  
 
 void sendx() {
-  x = x; //only activate this code if this slave is the x slave
   static int sendlength = 1;
   radio.send(TONODEID, &x, sendlength);
   Serial.println("Sent!");
-  delay(10000);
-  return;
 }
 
