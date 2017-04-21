@@ -48,8 +48,10 @@ void setup()
 void loop() {
 while (Serial.available() == 0) {}
     input = Serial.parseFloat();
+   if (input != 0){ 
     x = input;
     sendx();
+   }
 }  
 
 void sendx() {
@@ -57,7 +59,5 @@ void sendx() {
   static int sendlength = 1;
   radio.send(TONODEID, &x, sendlength);
   Serial.println("Sent!");
-  delay(10000);
-  return;
 }
 

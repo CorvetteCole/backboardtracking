@@ -39,8 +39,6 @@ void loop() {
 
     for (byte i = 0; i < radio.DATALEN; i+=2)
       u = (*pData++);
-      Serial.print(u);
-      Serial.print("\n" );
     if (u > 10) {     //x slave will add 30 to its value before transmission, y slave will not
       ux = u-30;
       u = 0;
@@ -51,11 +49,9 @@ void loop() {
     }
  
    if (uy >= 0) {
-    Serial.println(ux);
-    Serial.println(uy);
     angle = angleCalc(ux, uy); 
-    Serial.println(angle); 
     }
+    Serial.print(angle);  
   }
 }
 
@@ -66,37 +62,49 @@ int angleCalc(int ux, int uy) {
  switch(ux) {
   case -3:     //change 0s to equal actual distance values for x axis
    x = -25;
+   break;
   case -2:
    x = -16.66;
+   break;
   case -1:
    x = -8.33;
+   break;
   case 0:
    x = 0;
+   break;
   case 1:
    x = 8.33;
+   break;
   case 2:
    x = 16.66;
+   break;
   case 3:
    x = 25;
+   break;
  }
  switch(uy) { 
   case 0:
    y = 0;
+   break;
   case 1:
    y = 7.33;
+   break;
   case 2:
    y = 15.66;   //replace 0s with actual values of the y sensors
+   break;  
   case 3:
    y = 23.5;
+   break;
   case 4:
    y = 31.33;
+   break;
   case 5:
    y = 39.15;
+   break;
   case 6:
    y = 47;
+   break;
  }
- Serial.println(x);
- Serial.println(y);
 if (y == 0 && x < 0) {
   a = -90;
  }
