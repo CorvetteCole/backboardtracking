@@ -52,7 +52,6 @@ void loop() {
     angle = angleCalc(ux, uy); 
     }
     Wire.beginTransmission(8);
-    Wire.write("angle is ");
     Wire.write(angle); 
     Wire.endTransmission();
   }
