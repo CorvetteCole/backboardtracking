@@ -1,7 +1,9 @@
+#include <Wire.h>
+
 #include <digitalWriteFast.h>
 
 
-int angle, input, PWM;
+int  input, PWM, angle = 0, encoderValue = 0;
 void align(void);
 
 // It turns out that the regular digitalRead() calls are too slow and bring the arduino down when
@@ -19,10 +21,12 @@ volatile bool EncoderBSet;
 volatile bool EncoderAPrev;
 volatile bool EncoderBPrev;
 volatile long EncoderTicks = 0;
-int encoderValue = 0;
 
 void setup()  {
   Serial.begin(9600);
+  Wire.begin(8);
+  Wire.onReceive(receiveEvent);
+  
 // Quadrature encoder
   pinMode(cEncoderPinA, INPUT);      // sets pin A as input
   digitalWrite(cEncoderPinA, LOW);  // turn on pullup resistors
@@ -114,3 +118,9 @@ int encoderCalc() {
   i = i / (35/7.5);   //adjust for ratio between drive wheel and lazy susan
   return i;
 }
+
+void receiveEvent(int howMany) {
+  angle = Wire.read();
+  Serial.println(angle);
+}
+

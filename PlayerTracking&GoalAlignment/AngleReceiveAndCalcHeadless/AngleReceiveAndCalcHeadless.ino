@@ -1,4 +1,4 @@
-//Libraries
+#include <Wire.h>
 #include <digitalWriteFast.h>   
 #include <RFM69.h>
 #include <RFM69registers.h>
@@ -22,7 +22,7 @@ const float Pi = 3.14159;
 
 void setup() {
   Serial.begin(9600);  //Initialize serial terminal
-  
+  Wire.begin();
   //Radio setup
   radio.initialize(FREQUENCY, MYNODEID, NETWORKID);
   radio.setHighPower(); // Always use this for RFM69HCW
@@ -51,7 +51,10 @@ void loop() {
    if (uy >= 0) {
     angle = angleCalc(ux, uy); 
     }
-    Serial.print(angle);  
+    Wire.beginTransmission(8);
+    Wire.write("angle is ");
+    Wire.write(angle); 
+    Wire.endTransmission();
   }
 }
 
