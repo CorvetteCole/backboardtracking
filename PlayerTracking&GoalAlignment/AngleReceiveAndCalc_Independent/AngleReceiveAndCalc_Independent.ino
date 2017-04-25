@@ -14,7 +14,7 @@
 RFM69 radio;
 
 //Other declarations
-int angle, ux = 0, uy = 0, u = 0;
+int angle, negative, ux = 0, uy = 0, u = 0;
 const float Pi = 3.14159;
 
 
@@ -50,10 +50,19 @@ void loop() {
  
    if (uy >= 0) {
     angle = angleCalc(ux, uy); 
+    
+    Serial.println(angle);
+    if (angle < 0) {
+      angle = angle * -1;
+      negative = 1;
     }
+    else negative = 0;
+    
     Wire.beginTransmission(8);
-    Wire.write(angle); 
+    Wire.write(angle);
+    Wire.write(negative); 
     Wire.endTransmission();
+   }
   }
 }
 
@@ -83,6 +92,9 @@ int angleCalc(int ux, int uy) {
   case 3:
    x = 25;
    break;
+  case 4:    //for testing since slaves can't send 0
+   x = 0;
+   break; 
  }
  switch(uy) { 
   case 0:
@@ -106,6 +118,9 @@ int angleCalc(int ux, int uy) {
   case 6:
    y = 47;
    break;
+  case 7:      //for testing since slaves can't send 0
+   y = 0;
+   break;  
  }
 if (y == 0 && x < 0) {
   a = -90;

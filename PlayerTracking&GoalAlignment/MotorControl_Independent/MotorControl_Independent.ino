@@ -3,7 +3,7 @@
 #include <digitalWriteFast.h>
 
 
-int  input, PWM, angle = 0, encoderValue = 0;
+int  input, PWM, negative, angle = 0, encoderValue = 0;
 void align(void);
 
 // It turns out that the regular digitalRead() calls are too slow and bring the arduino down when
@@ -34,28 +34,19 @@ void setup()  {
   digitalWrite(cEncoderPinB, LOW);  // turn on pullup resistors
   attachInterrupt(cEncoderInterruptA, HandleMotorInterruptA, CHANGE);
   attachInterrupt(cEncoderInterruptB, HandleMotorInterruptB, CHANGE);
-  Serial.println("desired angle in degrees");
 } 
 
 void loop()  {
- if (encoderValue != angle) {
-      void align();
-      }
- if (Serial.available() > 0) {
-  angle = Serial.read();
-   Serial.println(angle);
- }
- if (encoderValue != angle) {
-      void align();
-      }
+ encoderValue = encoderCalc();
+align();
 }
 
 void align(){    
    while (encoderValue != angle) { 
     if ((encoderValue > (angle+40)) || (encoderValue < (angle-40))) {
-      PWM = 120;
+      PWM = 140;
     }
-    else PWM = 80;
+    else PWM = 100;
     if (encoderValue < angle) {
       digitalWrite(6, HIGH);
       digitalWrite(7, LOW);
@@ -86,7 +77,7 @@ void HandleMotorInterruptA(){
 
 // Interrupt service routines for the right motor's quadrature encoder
 void HandleMotorInterruptB(){
-  // Test transition;
+  // negative transition;
   EncoderBSet = digitalReadFast(cEncoderPinB);
   EncoderASet = digitalReadFast(cEncoderPinA);
   
@@ -120,7 +111,11 @@ int encoderCalc() {
 }
 
 void receiveEvent(int howMany) {
-  angle = Wire.read();
-  Serial.println(angle);
+  angle = Wire.read();    // receive byte as an integer
+  int negative = Wire.read();
+ if (negative == 1) {
+  angle = angle * -1;
+ }
 }
+
 
