@@ -6,7 +6,7 @@ void sendx(void);
 // Addresses for this node. CHANGE THESE FOR EACH NODE!
 
 #define NETWORKID     0   // Must be the same for all nodes
-#define MYNODEID      3   // My node ID
+#define MYNODEID      2   // My node ID
 #define TONODEID      1   // Destination node ID (1 is the master arduino)
 
 // RFM69 frequency, uncomment the frequency of your module:
@@ -35,8 +35,13 @@ void setup()
   Serial.print("Node ");
   Serial.print(MYNODEID,DEC);
   Serial.println(" ready");  
-  pinMode(8, INPUT_PULLUP);
+  pinMode(3, INPUT_PULLUP);
+  pinMode(4, INPUT_PULLUP);
+  pinMode(5, INPUT_PULLUP);
+  pinMode(6, INPUT_PULLUP);
   pinMode(7, INPUT_PULLUP);
+  pinMode(0, INPUT_PULLUP);
+  pinMode(1, INPUT_PULLUP);
   // Initialize the RFM69HCW:
   x = 0;
   radio.initialize(FREQUENCY, MYNODEID, NETWORKID);
@@ -48,22 +53,40 @@ void setup()
     radio.encrypt(ENCRYPTKEY);
 }
 
-void loop()
-{
- if ((digitalRead(8)) == 1) || (digitalRead(7))) {
-  
-  if (digitalRead(8) == 1) {
-    x = 1;                    //y slave will be from 0 to 6, x slave will be from -3 to 3
+void loop() {
+  //if (digitalRead(0) == 1) {
+  //  x = -3;
+  //  sendx();
+  //}
+  //if (digitalRead(1) == 1) {
+  //  x = -2;
+  //  sendx();
+  //}
+  if (digitalRead(3) == 1) {
+    x = -1;
+    sendx();
   }
-  if (digitalRead(7) == 1) {  //add digitalreads as needed
-    x = 2;
+  if (digitalRead(4) == 1) {
+    x = 0;
+    sendx();
   }
-  sendx();
+  if (digitalRead(5) == 1) {
+    x = 1;
+    sendx();
+  }
+  //if (digitalRead(6) == 1) {
+  //  x = 2;
+  //  sendx();                   
+  //}
+  //if (digitalRead(7) == 1) {  
+  //  x = 3;
+  //  sendx();
+  //}
   
- }
 }  
 
 void sendx() {
+  Serial.println(x);
   x = x + 30; //only activate this code if this slave is the x slave
   static int sendlength = 1;
   radio.send(TONODEID, &x, sendlength);
