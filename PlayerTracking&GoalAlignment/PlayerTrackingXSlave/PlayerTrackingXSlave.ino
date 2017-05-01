@@ -1,4 +1,4 @@
-int x;
+int x, prevx;
 void sendx(void);
 #include <RFM69.h>
 #include <RFM69registers.h>
@@ -40,8 +40,8 @@ void setup()
   pinMode(5, INPUT_PULLUP);
   pinMode(6, INPUT_PULLUP);
   pinMode(7, INPUT_PULLUP);
-  pinMode(0, INPUT_PULLUP);
-  pinMode(1, INPUT_PULLUP);
+  pinMode(8, INPUT_PULLUP);
+  pinMode(9, INPUT_PULLUP);
   // Initialize the RFM69HCW:
   x = 0;
   radio.initialize(FREQUENCY, MYNODEID, NETWORKID);
@@ -54,31 +54,31 @@ void setup()
 }
 
 void loop() {
-  //if (digitalRead(0) == 1) {
+  //if (digitalRead(3) == 1) {
   //  x = -3;
   //  sendx();
   //}
-  //if (digitalRead(1) == 1) {
+  //if (digitalRead(4) == 1) {
   //  x = -2;
   //  sendx();
   //}
-  if (digitalRead(3) == 1) {
+  if (digitalRead(5) == 1) {
     x = -1;
     sendx();
   }
-  if (digitalRead(4) == 1) {
+  if (digitalRead(6) == 1) {
     x = 0;
     sendx();
   }
-  if (digitalRead(5) == 1) {
+  if (digitalRead(7) == 1) {
     x = 1;
     sendx();
   }
-  //if (digitalRead(6) == 1) {
+  //if (digitalRead(8) == 1) {
   //  x = 2;
   //  sendx();                   
   //}
-  //if (digitalRead(7) == 1) {  
+  //if (digitalRead(9) == 1) {  
   //  x = 3;
   //  sendx();
   //}
@@ -86,10 +86,13 @@ void loop() {
 }  
 
 void sendx() {
+  if (prevx != x) {
   Serial.println(x);
   x = x + 30; //only activate this code if this slave is the x slave
   static int sendlength = 1;
   radio.send(TONODEID, &x, sendlength);
+  }
+  prevx = x;
 }
 
 
