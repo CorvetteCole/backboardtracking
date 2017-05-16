@@ -7,17 +7,17 @@ This program keeps track of player location on the court and points the basketba
 
 
 # Development tools used
--DigitalWriteFast library used to allow for accurate encoder readings https://github.com/NicksonYap/digitalWriteFast
+- DigitalWriteFast library used to allow for accurate encoder readings https://github.com/NicksonYap/digitalWriteFast
 
--Breakout radio sensor library for arduino: https://github.com/sparkfun/RFM69HCW_Breakout/archive/master.zip
+- Breakout radio sensor library for arduino: https://github.com/sparkfun/RFM69HCW_Breakout/archive/master.zip
 
--TMRpcm library for playing audio through arduino: https://github.com/TMRh20/TMRpcm/wiki
+- TMRpcm library for playing audio through arduino: https://github.com/TMRh20/TMRpcm/wiki
 
 - WAV sample rate converter for converting audio files to arduino playable audio files: http://www.008soft.com/en/wav-sample-rate-converter.htm
 
--ArduinoIDE: The official Arduino environment
+- ArduinoIDE: The official Arduino environment
 
--Git Bash: Used to manage this repository
+- Git Bash: Used to manage this repository
 
 # BackboardTracking
 Allows the finding of generalized location of where a basketball hit on the backboard of a basketball goal.
