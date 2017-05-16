@@ -83,6 +83,10 @@ int volt(int pin) {
 void playAudio() {
  Serial.println("playaudio");
  Serial.println(sensor);
+ tmrpcm.play("ball_hit.wav");
+ while (tmrpcm.isPlaying() == 1) {
+  delay(20);
+ }
  switch(sensor) {
   case 1:
    tmrpcm.play("top.wav");
@@ -95,7 +99,9 @@ void playAudio() {
   case 5:
    tmrpcm.play("bottom.wav");
  }
-
+ while (tmrpcm.isPlaying() == 1) {
+  delay(20);
+ }
  switch(sensordist) {
   case 1:
    tmrpcm.play("far_left.wav");
