@@ -25,7 +25,7 @@ void loop(){
   if(Serial.available()){   
     mychar = Serial.read();
 
-    if(mychar == 't'){ //send the letter p over the serial monitor to start playback
+    if(mychar == 't'){ //send the letter t over the serial monitor to start playback
       tmrpcm.play("test.wav");
     }
   }
