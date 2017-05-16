@@ -11,6 +11,8 @@ This program keeps track of player location on the court and points the basketba
 
 -Breakout radio sensor library for arduino: https://github.com/sparkfun/RFM69HCW_Breakout/archive/master.zip
 
+-TMRpcm library for playing audio through arduino: https://github.com/TMRh20/TMRpcm/wiki
+
 -ArduinoIDE: The official Arduino environment
 
 -Git Bash: Used to manage this repository
