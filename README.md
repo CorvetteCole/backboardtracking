@@ -13,7 +13,7 @@ This program keeps track of player location on the court and points the basketba
 
 -TMRpcm library for playing audio through arduino: https://github.com/TMRh20/TMRpcm/wiki
 
-- r8brain for converting audio files to arduino playable audio files: http://www.voxengo.com/product/r8brain/
+- WAV sample rate converter for converting audio files to arduino playable audio files: http://www.008soft.com/en/wav-sample-rate-converter.htm
 
 -ArduinoIDE: The official Arduino environment
 
