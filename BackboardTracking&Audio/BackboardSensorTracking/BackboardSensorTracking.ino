@@ -31,38 +31,38 @@ void loop() {
 
 void sensorcalc(int sensorID){ 
  sensorvoltage = volt((sensorID - 1));
-     if (1.66 <= sensorvoltage && sensorvoltage <= 2.5) { //deb:Serial.println("sensor1 if statement activated");  //deb:Serial.println(sensorvoltage, DEC);      
-      med[0] = sensorvoltage;                    //deb:Serial.println("first array value assigned to sensorvoltage");  
-      delay(55);                                    //deb:Serial.println("1st 38 ms delay finished");
-      volt(1);                                      //deb:Serial.println("volt1 for array value 2 ran"); //deb:Serial.println(sensorvoltage, DEC);
-      med[1] = sensorvoltage;                    //deb:Serial.println("Value 2 of array assigned");
-      delay(38);                                    //deb:Serial.println("2nd 38 ms delay finished");
-      volt(1);                                      //deb:Serial.println("volt1 for array value 3 ran"); //deb:Serial.println(sensorvoltage, DEC);
-      med[2] = sensorvoltage;                    //deb:Serial.println("Value 3 of array assigned");
-      sort(med,3);                                 //deb:Serial.println("Array sort ran"); //deb:Serial.println(med[1], DEC);
-      sensorvoltage = med[1];                    //deb:Serial.println("sensorvoltage assigned from value 2 in array"); //deb:Serial.println(sensorvoltage, DEC);
+     if (1.66 <= sensorvoltage && sensorvoltage <= 2.5) { 
+      med[0] = sensorvoltage;                    
+      delay(55);                                    
+      volt(1);                                      
+      med[1] = sensorvoltage;                    
+      delay(38);                                    
+      volt(1);                                      
+      med[2] = sensorvoltage;                    
+      sort(med,3);                                 
+      sensorvoltage = med[1];                    
                       
-       if (2.12 < sensorvoltage && sensorvoltage < 2.5) {   //deb:Serial.println("block1 triggered");
-       sensordist = 1;                                      //deb:Serial.println(sensordist, DEC);}                      
+       if (2.12 < sensorvoltage && sensorvoltage < 2.5) {   
+       sensordist = 1;                                      
        }
-       else if (1.93 < sensorvoltage && sensorvoltage < 2.12) {    //deb:Serial.println("block2 triggered");
-        sensordist = 2;                                             //deb:Serial.println(sensordist, DEC);     
+       else if (1.93 < sensorvoltage && sensorvoltage < 2.12) {   
+        sensordist = 2;                                             
        }
-       else if (1.82 < sensorvoltage && sensorvoltage < 1.93) {    //deb:Serial.println("block3 triggered");
-        sensordist = 3;                                             //deb:Serial.println(sensordist, DEC);   
+       else if (1.82 < sensorvoltage && sensorvoltage < 1.93) {   
+        sensordist = 3;                                             
        }
-       else if (1.73 < sensorvoltage && sensorvoltage < 1.82) {    //deb:Serial.println("block4 triggered");
-        sensordist = 4;                                             //deb:Serial.println(sensordist, DEC);   
+       else if (1.73 < sensorvoltage && sensorvoltage < 1.82) {    
+        sensordist = 4;                                            
        }
-       else if (1.66 < sensorvoltage && sensorvoltage < 1.73) {    //deb:Serial.println("block5 triggered");
-        sensordist = 5;                                             //deb:Serial.println(sensordist, DEC);  
+       else if (1.66 < sensorvoltage && sensorvoltage < 1.73) {   
+        sensordist = 5;                                             
        }
     }    
   sensor = sensorID; 
   playAudio();
 }
 
-void sort(float a[], float size) { //deb:Serial.println("sorting...");  
+void sort(float a[], float size) { 
     for(int i=0; i<(size-1); i++) {
         for(int j=0; j<(size-(i+1)); j++) {
                 if(a[j] > a[j+1]) {
