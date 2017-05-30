@@ -26,7 +26,16 @@ void loop(){
     mychar = Serial.read();
 
     if(mychar == 't'){ //send the letter t over the serial monitor to start playback
-      tmrpcm.play("test.wav");
+      Serial.println("playing");
+      tmrpcm.play("ball_hit.wav");
+      while (tmrpcm.isPlaying() == 1) {
+      delay(20);
+     }
+     tmrpcm.play("top.wav");
+      while (tmrpcm.isPlaying() == 1) {
+      delay(20);
+      }
+     tmrpcm.play("left.wav"); 
     }
   }
 }

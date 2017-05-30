@@ -1,27 +1,26 @@
 #include <pcmConfig.h>
 #include <pcmRF.h>
 #include <TMRpcm.h>
-
 #include <SPI.h>
-
 #include <SD.h>
 
 TMRpcm tmrpcm;
 
-float sensorvoltage, med [3] = { };
-int sensordist, sensor;
+float med [3] = { };
+int sensordist;
 void playAudio(void);
 
 void setup() {
   Serial.begin(9600);
-  tmrpcm.speakerPin = 9;
+  tmrpcm.speakerPin = 9;                                                                    //connect speaker positive to pin 9
   if (!SD.begin(4)) {  // see if the card is present and can be initialized:
     Serial.println("SD fail");  
     return;   // don't do anything more if not
   }
+  Serial.println("ready");
 }
 
-void loop() {
+void loop() {                                                                               //connect top sensor to A0, bottom to A4
  sensorcalc(1);
  sensorcalc(2);
  sensorcalc(3);
@@ -30,14 +29,14 @@ void loop() {
 } 
 
 void sensorcalc(int sensorID){ 
- sensorvoltage = volt((sensorID - 1));
+ float sensorvoltage = volt((sensorID - 1));
      if (1.66 <= sensorvoltage && sensorvoltage <= 2.5) { 
       med[0] = sensorvoltage;                    
       delay(55);                                    
-      volt(1);                                      
+      sensorvoltage = volt((sensorID - 1));                                      
       med[1] = sensorvoltage;                    
       delay(38);                                    
-      volt(1);                                      
+      sensorvoltage = volt((sensorID - 1));                                      
       med[2] = sensorvoltage;                    
       sort(med,3);                                 
       sensorvoltage = med[1];                    
@@ -57,9 +56,8 @@ void sensorcalc(int sensorID){
        else if (1.66 < sensorvoltage && sensorvoltage < 1.73) {   
         sensordist = 5;                                             
        }
-    }    
-  sensor = sensorID; 
-  playAudio();
+    }      
+  playAudio(sensorID);
 }
 
 void sort(float a[], float size) { 
@@ -80,7 +78,7 @@ int volt(int pin) {
   return voltage;
 }
 
-void playAudio() {
+void playAudio(int sensor) {
  Serial.println("playaudio");
  Serial.println(sensor);
  tmrpcm.play("ball_hit.wav");

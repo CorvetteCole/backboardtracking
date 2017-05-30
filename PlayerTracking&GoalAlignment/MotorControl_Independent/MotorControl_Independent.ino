@@ -106,7 +106,7 @@ int ParseEncoder(){
 int encoderCalc() {
   int i = 0;                              //gearing ratio should be 35/7.5
   i = EncoderTicks * (360/1856.0);
-  i = i / (35/7.5);   //adjust for ratio between drive wheel and lazy susan
+  i = i / (35/7.17);   //adjust for ratio between drive wheel and lazy susan
   return i;
 }
 

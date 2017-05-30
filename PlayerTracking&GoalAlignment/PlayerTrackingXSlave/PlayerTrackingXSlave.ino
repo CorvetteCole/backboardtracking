@@ -54,24 +54,24 @@ void setup()
 }
 
 void loop() {
-  //if (digitalRead(3) == 1) {
-  //  x = -3;
-  //  sendx();
-  //}
-  //if (digitalRead(4) == 1) {
-  //  x = -2;
-  //  sendx();
-  //}
-  if (digitalRead(5) == 1) {
-    x = -1;
+  if (digitalRead(3) == 1) {
+    x = 1;
     sendx();
   }
-  if (digitalRead(6) == 1) {
+  if (digitalRead(4) == 1) {
+    x = 2;
+    sendx();
+  }
+  if (digitalRead(5) == 1) {
     x = 0;
     sendx();
   }
+  if (digitalRead(6) == 1) {
+    x = -2;
+    sendx();
+  }
   if (digitalRead(7) == 1) {
-    x = 1;
+    x = -1;
     sendx();
   }
   //if (digitalRead(8) == 1) {
@@ -81,17 +81,17 @@ void loop() {
   //if (digitalRead(9) == 1) {  
   //  x = 3;
   //  sendx();
-  //}
-  
+  //}  
+delay(50);
 }  
 
 void sendx() {
-  if (prevx != x) {
-  Serial.println(x);
+  //if (prevx != x) {
+  //Serial.println(x);
   x = x + 30; //only activate this code if this slave is the x slave
   static int sendlength = 1;
   radio.send(TONODEID, &x, sendlength);
-  }
+  //}
   prevx = x;
 }
 

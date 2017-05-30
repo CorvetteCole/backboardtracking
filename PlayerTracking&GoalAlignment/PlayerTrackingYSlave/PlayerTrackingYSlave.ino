@@ -54,26 +54,26 @@ void setup()
 }
 
 void loop() {
-  if (digitalRead(3) == 1) {      //pins 0 and 1 don't work
+  if (digitalRead(3) == 1) {
     x = 0;
     sendx();
   }
   if (digitalRead(4) == 1) {
-    x = 1;
+    x = 4;
     sendx();
   }
   if (digitalRead(5) == 1) {
+    x = 3;
+    sendx();
+  }
+  if (digitalRead(6) == 1) {
     x = 2;
     sendx();
   }
-  //if (digitalRead(6) == 1) {
-  //  x = 3;
-  //  sendx();
-  //}
-  //if (digitalRead(7) == 1) {
-  //  x = 4;
-  //  sendx();
-  //}
+  if (digitalRead(7) == 1) {
+    x = 1;
+    sendx();
+  }
   //if (digitalRead(8) == 1) {
   //  x = 5;
   //  sendx();                   
@@ -81,17 +81,17 @@ void loop() {
   //if (digitalRead(9) == 1) {  
   //  x = 6;
   //  sendx();
-  //}
-  
+  //}  
 }  
 
 void sendx() {
-  if (prevx != x){
+  //if (prevx != x) {
   Serial.println(x);
   static int sendlength = 1;
   radio.send(TONODEID, &x, sendlength);
-  }
+  //}
   prevx = x;
 }
+
 
 
