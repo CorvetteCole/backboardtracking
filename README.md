@@ -1,3 +1,8 @@
+# As seen on TV
+https://www.wdrb.com/news/education/oldham-county-students-create-system-to-help-visually-impaired-players/article_a3d919e0-709d-5f61-ba2f-67f6552c6874.html
+
+https://www.oldhamera.com/content/engineering-basketball-blind
+
 # Player Tracking & Goal Alignment
 This program keeps track of player location on the court and points the basketball returner towards the player, allowing them to retrieve it after shooting
 
