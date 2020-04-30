@@ -1,3 +1,6 @@
+# ARCHIVED
+This repository has been archived. Some information could still be relevant to future projects but there are better ways to do this as of present
+
 # As seen on TV
 https://www.wdrb.com/news/education/oldham-county-students-create-system-to-help-visually-impaired-players/article_a3d919e0-709d-5f61-ba2f-67f6552c6874.html
 
